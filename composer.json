@@ -1,0 +1,21 @@
+{
+    "name": "stesi/erp/inoice-module",
+    "description": "STeSI Invoice module for STeSI.erp",
+    "type": "package",
+    "minimum-stability": "dev",
+    "keywords": ["yii2","extension","invoice"],
+    "authors": [
+        {
+            "name": "STeSI",
+            "email": "info@stesi.srl"
+        }
+    ],
+    "require": {
+        "yiisoft/yii2": "2.*"
+    },
+    "autoload": {
+        "psr-4": {
+            "stesi\\erp\\invoice-module\\": "src/"
+        }
+    }
+}
