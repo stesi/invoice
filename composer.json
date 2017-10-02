@@ -1,5 +1,5 @@
 {
-    "name": "stesi/erp/inoice-module",
+    "name": "stesi/erp/inoice_module",
     "description": "STeSI Invoice module for STeSI.erp",
     "type": "package",
     "minimum-stability": "dev",
@@ -15,7 +15,7 @@
     },
     "autoload": {
         "psr-4": {
-            "stesi\\erp\\invoice-module\\": "src/"
+            "stesi\\erp\\invoice_module\\": "src/"
         }
     }
 }
