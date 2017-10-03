@@ -3,7 +3,7 @@
 $this->title  =  'Payment Terms';
 
 $this->params['buttons'] = [
-    ['label' => 'Create payment-terms', 'url' => ['/payment-terms/create'], 'linkOptions' => ["class" => "showModalButton btn btn-sm btn-default", "title" => Yii::t('app', 'Create payment-terms')],],
+    ['label' => 'Create payment-terms', 'url' => ['create'], 'linkOptions' => ["class" => "showModalButton btn btn-sm btn-default", "title" => Yii::t('app', 'Create payment-terms')],],
     ];
 
 ?>
@@ -19,6 +19,6 @@ $this->params['buttons'] = [
     ['class' => 'kartik\grid\ActionColumn'],
     ];
 
-    require_once(__DIR__ . "/../../../../views/layouts/grid_layout.php");
+    require(Yii::getAlias('@app/views/layouts/grid_layout.php'));
 ?>
 </div>

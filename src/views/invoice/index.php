@@ -3,7 +3,7 @@
 $this->title  =  'Invoices';
 
 $this->params['buttons'] = [
-    ['label' => 'Create invoice', 'url' => ['/invoice/create'], 'linkOptions' => ["class" => "showModalButton btn btn-sm btn-default", "title" => Yii::t('app', 'Create invoice')],],
+    ['label' => 'Create invoice', 'url' => ['create'], 'linkOptions' => ["class" => "showModalButton btn btn-sm btn-default", "title" => Yii::t('app', 'Create invoice')],],
     ];
 
 ?>

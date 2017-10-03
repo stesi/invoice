@@ -2,7 +2,7 @@
 
 namespace stesi\invoice\models;
 
-use \stesi\gles\models\Organization as GlesOrganization;
+use \app\modules\gles\models\Organization as GlesOrganization;
 use app\services\StesiTools;
 use kartik\helpers\Html;
 
