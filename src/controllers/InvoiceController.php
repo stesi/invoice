@@ -40,7 +40,7 @@ class InvoiceController extends StesiController
                 'class' => ViewAction::className(),
                 'modelClass' => Invoice::className(),
             ],
-            ' invoice-list' => [
+            'invoice-list' => [
                 'class' => ListAction::className(),
                 'modelClass' => Invoice::className(),
             ]

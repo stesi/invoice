@@ -1,14 +1,14 @@
 <?php
 
-use yii\helpers\Html;
 use yii\widgets\DetailView;
 
 /* @var $this yii\web\View */
 /* @var $model stesi\invoice\models\Invoice */
 
 $this->title = $model->id;
-$this->params['breadcrumbs'][] = ['label' => 'Invoices', 'url' => ['index']];
-$this->params['breadcrumbs'][] = $this->title;
+
+$this->params['breadcrumbs'][] = ['label' => Yii::t('invoice/invoice/labels', 'invoice_labels_breadcrumbs.view.invoice'), 'url' => ["index"]];
+$this->params['breadcrumbs'][] = ['label' => Yii::t('invoice/invoice/labels', 'invoice_labels_breadcrumbs.view'), 'url' => ["view", "id" => $model->id]];
 
 $this->params['buttons'] = [
     ['label' => 'Update', 'url' => ['update', "id" => $model->id], 'linkOptions' => ["class" => "showModalButton btn btn-sm btn-primary", "title" => 'Update']],

@@ -40,10 +40,10 @@ class PaymentTermsController extends StesiController
                 'class' => ViewAction::className(),
                 'modelClass' => PaymentTerms::className(),
             ],
-                        ' paymentterms-list' => [
+            'paymentterms-list' => [
                 'class' => ListAction::className(),
                 'modelClass' => PaymentTerms::className(),
-                'description_name' => 'code',
+                'description_name' => 'name',
             ]
         ];
     }

@@ -1,71 +1,166 @@
 <?php
 
-use yii\helpers\Html;
+use kartik\builder\FormGrid;
+use kartik\datecontrol\DateControl;
 use kartik\form\ActiveField;
+use kartik\widgets\Select2;
+use yii\helpers\ArrayHelper;
+use yii\helpers\Html;
 use kartik\form\ActiveForm;
-use yii\bootstrap\Alert;
-use yii\widgets\Pjax;
+use yii\helpers\Url;
+use kartik\builder\Form;
 
 /* @var $this yii\web\View */
 /* @var $model stesi\invoice\models\Invoice */
-/* @var $form yii\widgets\ActiveForm */
+/* @var $form kartik\form\ActiveForm */
+
+
 ?>
-<?php Pjax::begin();?>
+
 <div class="invoice-form">
     <?= $this->render("@app/views/layouts/flash-error"); ?>
 
     <?php $form = ActiveForm::begin([
-    'options' => ['data-pjax' => true ],
-    'id' => 'invoice-form',
-    'fieldConfig'=>[
-    'hintType' => ActiveField::HINT_SPECIAL,
-    'hintSettings' => ['container' => '#invoice-form']
-    ],
-    //'enableAjaxValidation' => true
+        'options' => ['data-pjax' => true],
+        'id' => 'invoice-form',
+        //'enableAjaxValidation' => true
     ]); ?>
 
-    <?= $form->field($model, 'organization_from_id',['hintType' => ActiveField::HINT_SPECIAL,'hintSettings' => ['container' => '#invoice-form']])->textInput() ?>
+    <?= FormGrid::widget([
+        'model' => $model,
+        'form' => $form,
+        'autoGenerateColumns' => true,
+        'rows' => [
+            [
+                'attributes' => [
+                    'organization_to_id' => [
+                        'type' => Form::INPUT_WIDGET,
+                        'widgetClass' => Select2::class,
+                        'fieldConfig' => [
+                            'hintType' => ActiveField::HINT_SPECIAL,
+                            'hintSettings' => ['container' => '#invoice-form'],
+                        ],
+                        'options' => [
+                            'pluginOptions' => [
+                                'placeholder' => Yii::t('invoice/invoice/labels', 'invoice_labels.form.select_customer'),
+                                'minimumInputLength' => '3',
+                                'ajax' => ArrayHelper::merge(require(Yii::getAlias('@app/config/modules/select2Ajax.php')), [
+                                    'url' => Url::to(['organization/customer-list']),
+                                ]),
+                                'allowClear' => true,
+                            ],
+                            'initValueText' => ArrayHelper::getValue($model, 'organizationTo.name'),
+                        ],
 
-    <?= $form->field($model, 'organization_to_id',['hintType' => ActiveField::HINT_SPECIAL,'hintSettings' => ['container' => '#invoice-form']])->textInput() ?>
+                    ],
+                ]
+            ],
+            [
+                'attributes' => [       // 1 column layout
+                    'preamble' => [
+                        'type' => Form::INPUT_TEXT,
+                        'fieldConfig' => [
+                            'hintType' => ActiveField::HINT_SPECIAL,
+                            'hintSettings' => ['container' => '#invoice-form'],
+                        ]
+                    ],
+                    'number' => [
+                        'type' => Form::INPUT_TEXT,
+                        'fieldConfig' => [
+                            'hintType' => ActiveField::HINT_SPECIAL,
+                            'hintSettings' => ['container' => '#invoice-form'],
+                        ]
+                    ]
+                ],
 
-    <?= $form->field($model, 'status',['hintType' => ActiveField::HINT_SPECIAL,'hintSettings' => ['container' => '#invoice-form']])->dropDownList([ 'DRAFT' => 'DRAFT', 'CLOSED' => 'CLOSED', ], ['prompt' => '']) ?>
+            ],
+            [
+                'attributes' => [
+                    'invoice_type' => [
+                        'type' => Form::INPUT_DROPDOWN_LIST,
+                        'fieldConfig' => [
+                            'hintType' => ActiveField::HINT_SPECIAL,
+                            'hintSettings' => ['container' => '#invoice-form'],
+                        ],
+                        'items' => ['INVOICE', 'PREINVOICE'],
+                    ]
+                ]
+            ],
+            [
+                'attributes' => [
+                    'payment_terms_id' => [
+                        'type' => Form::INPUT_WIDGET,
+                        'widgetClass' => Select2::class,
+                        'fieldConfig' => [
+                            'hintType' => ActiveField::HINT_SPECIAL,
+                            'hintSettings' => ['container' => '#invoice-form'],
+                        ],
+                        'options' => [
+                            'pluginOptions' => [
+                                'placeholder' => Yii::t('invoice/invoice/labels', 'invoice_labels.form.select_payment_terms'),
+                                'minimumInputLength' => '3',
+                                'ajax' => ArrayHelper::merge(require(Yii::getAlias('@app/config/modules/select2Ajax.php')), [
+                                    'url' => Url::to(['payment-terms/paymentterms-list']),
+                                ]),
+                                'allowClear' => true,
+                            ],
+                            'initValueText' => ArrayHelper::getValue($model, 'paymentTerms.name'),
+                        ],
 
-    <?= $form->field($model, 'invoice_type',['hintType' => ActiveField::HINT_SPECIAL,'hintSettings' => ['container' => '#invoice-form']])->dropDownList([ 'INVOICE' => 'INVOICE', 'PREINVOICE' => 'PREINVOICE', ], ['prompt' => '']) ?>
+                    ],
+                ]
+            ],
 
-    <?= $form->field($model, 'preamble',['hintType' => ActiveField::HINT_SPECIAL,'hintSettings' => ['container' => '#invoice-form']])->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'number',['hintType' => ActiveField::HINT_SPECIAL,'hintSettings' => ['container' => '#invoice-form']])->textInput() ?>
+        ],
+    ]);
 
-    <?= $form->field($model, 'year',['hintType' => ActiveField::HINT_SPECIAL,'hintSettings' => ['container' => '#invoice-form']])->textInput(['maxlength' => true]) ?>
+    echo $form->field($model, 'invoice_date', ['hintType' => \kartik\form\ActiveField::HINT_SPECIAL,
+        'hintSettings' => ['container' => '#invoice-form']
+    ])->widget(DateControl::className(), [
+        'type' => DateControl::FORMAT_DATETIME,
+        'options' => ['placeholder' => 'Enter date ...']
+    ]);
 
-    <?= $form->field($model, 'invoice_date',['hintType' => ActiveField::HINT_SPECIAL,'hintSettings' => ['container' => '#invoice-form']])->textInput() ?>
+    echo $form->field($model, 'competence_date', ['hintType' => \kartik\form\ActiveField::HINT_SPECIAL,
+        'hintSettings' => ['container' => '#invoice-form']
+    ])->widget(DateControl::className(), [
+        'type' => DateControl::FORMAT_DATETIME,
+        'options' => ['placeholder' => 'Enter date ...']
+    ]);
 
-    <?= $form->field($model, 'competence_date',['hintType' => ActiveField::HINT_SPECIAL,'hintSettings' => ['container' => '#invoice-form']])->textInput() ?>
 
-    <?= $form->field($model, 'created_at',['hintType' => ActiveField::HINT_SPECIAL,'hintSettings' => ['container' => '#invoice-form']])->textInput() ?>
+    ?>
+    <?= FormGrid::widget([
+        'model' => $model,
+        'form' => $form,
+        'autoGenerateColumns' => true,
+        'rows' => [
+            [
+                'attributes' => [       // 1 column layout
+                    'note' => [
+                        'type' => Form::INPUT_TEXTAREA,
+                        'fieldConfig' => [
+                            'hintType' => ActiveField::HINT_SPECIAL,
+                            'hintSettings' => ['container' => '#invoice-form'],
+                        ]
+                    ],
+                ]
+            ]
+        ]
+    ]);
 
-    <?= $form->field($model, 'updated_at',['hintType' => ActiveField::HINT_SPECIAL,'hintSettings' => ['container' => '#invoice-form']])->textInput() ?>
 
-    <?= $form->field($model, 'created_by',['hintType' => ActiveField::HINT_SPECIAL,'hintSettings' => ['container' => '#invoice-form']])->textInput() ?>
+    ?>
 
-    <?= $form->field($model, 'updated_by',['hintType' => ActiveField::HINT_SPECIAL,'hintSettings' => ['container' => '#invoice-form']])->textInput() ?>
-
-    <?= $form->field($model, 'payment_terms_id',['hintType' => ActiveField::HINT_SPECIAL,'hintSettings' => ['container' => '#invoice-form']])->textInput() ?>
-
-    <?= $form->field($model, 'note',['hintType' => ActiveField::HINT_SPECIAL,'hintSettings' => ['container' => '#invoice-form']])->textarea(['rows' => 6]) ?>
-
-    <?= $form->field($model, 'subtotal',['hintType' => ActiveField::HINT_SPECIAL,'hintSettings' => ['container' => '#invoice-form']])->textInput() ?>
-
-    <?= $form->field($model, 'tax',['hintType' => ActiveField::HINT_SPECIAL,'hintSettings' => ['container' => '#invoice-form']])->textInput() ?>
-
-    <?= $form->field($model, 'total',['hintType' => ActiveField::HINT_SPECIAL,'hintSettings' => ['container' => '#invoice-form']])->textInput() ?>
 
     <div class="form-group">
-        <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
+        <?= Html::submitButton($model->isNewRecord ? Yii::t('app', 'Create') : Yii::t('app', 'Update'), ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
         <?= Html::resetButton(Yii::t('app', 'Reset'), ['class' => 'btn btn-default']) ?>
     </div>
 
-    <?php ActiveForm::end(); ?>
+    <?php
+    ActiveForm::end();
+    ?>
 
 </div>
-<?php Pjax::end();?>
