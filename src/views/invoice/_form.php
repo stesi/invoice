@@ -149,8 +149,27 @@ use kartik\builder\Form;
             ]
         ]
     ]);
+    ?>
 
-
+    <?php $subFormsItems = [
+        [
+            'label' => '<i class="glyphicon glyphicon-book"></i> ' . Html::encode(Yii::t('invoice/invoice/labels', 'invoice_tabs.invoice_row')),
+            'content' => $this->render('_form_invoice_row', [
+                'dataProvider' => new \yii\data\ArrayDataProvider(['allModels' => $model->invoiceRows]),
+                'form' => $form
+            ])
+        ]
+    ];
+    echo kartik\tabs\TabsX::widget([
+        'items' => $subFormsItems,
+        'position' => kartik\tabs\TabsX::POS_ABOVE,
+        'encodeLabels' => false,
+        'pluginOptions' => [
+            'bordered' => true,
+            'sideways' => true,
+            'enableCache' => false,
+        ],
+    ]);
     ?>
 
 
