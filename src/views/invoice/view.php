@@ -7,9 +7,8 @@ use yii\widgets\DetailView;
 
 $this->title = $model->id;
 
-$this->params['breadcrumbs'][] = ['label' => Yii::t('invoice/invoice/breadcrumbs', 'invoice_labels_breadcrumbs.view.invoice'), 'url' => ["index"]];
-$this->params['breadcrumbs'][] = ['label' => Yii::t('invoice/invoice/breadcrumbs', 'invoice_labels_breadcrumbs.view'), 'url' => ["view", "id" => $model->id]];
-
+$this->params['breadcrumbs'][] = ['label' => Yii::t('app/breadcrumbs', 'invoice_view_breadcrumbs.Index'), 'url' => ["index"]];
+$this->params['breadcrumbs'][] = ['label' => Yii::t('app/breadcrumbs', 'view_breadcrumbs.Id').$model->id, 'url' => ["view", "id" => $model->id]];
 $this->params['buttons'] = [
     ['label' => Yii::t('invoice/invoice/buttons', 'invoice_buttons.view.update_invoice'), 'url' => ['update', "id" => $model->id], 'linkOptions' => ["class" => "showModalButton btn btn-sm btn-primary", "title" => Yii::t('invoice/invoice/titles', 'invoice_titles.update_invoice')]],
     ['label' => Yii::t('invoice/invoice/buttons', 'invoice_buttons.view.delete_invoice'), 'url' => ['delete', "id" => $model->id], 'linkOptions' => ["class" => "btn btn-sm btn btn-danger", "title" => Yii::t('invoice/invoice/titles', 'invoice_titles.delete_invoice'),

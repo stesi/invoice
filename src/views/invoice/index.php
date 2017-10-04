@@ -1,6 +1,7 @@
 <?php
 
 $this->title = 'Invoices';
+$this->params['breadcrumbs'][] = ['label' => Yii::t('app/breadcrumbs', 'invoice_index_breadcrumbs.Index'), 'url' => ['index']];
 
 $this->params['buttons'] = [
     ['label' => Yii::t('invoice/invoice/buttons', 'invoice_buttons.index.create_invoice'), 'url' => ['create'], 'linkOptions' => ["class" => "showModalButton btn btn-sm btn-default", "title" => Yii::t('invoice/invoice/titles', 'invoice_titles.create_invoice')],],
