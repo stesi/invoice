@@ -17,7 +17,7 @@ use yii\web\JsExpression;
 $subformName = 'invoice_row';
 $subformId = 'tabular-form-invoice-invoice-row-wrapper';
 $modelName = InvoiceRow::class;
-$buttonAddMessage = 'Add Invoice Row';
+$buttonAddMessage = Yii::t('invoice/invoice/buttons', 'invoice_buttons.subform.add_invoice_row');
 $parentFormId = 'invoice-form';
 
 if (!isset($form)) {
@@ -69,7 +69,7 @@ if (!isset($form)) {
                 'label' => '',
                 'value' => function ($model, $key) {
                     return
-                        Html::a('<i class="glyphicon glyphicon-trash"></i>', '#', ['title' => Yii::t('app', 'Delete'), 'class' => 'btn_del_form_row']);
+                        Html::a('<i class="glyphicon glyphicon-trash"></i>', '#', ['title' => Yii::t('app/buttons', 'subform_button_delete'), 'class' => 'btn_del_form_row']);
                 },
             ],
         ],
