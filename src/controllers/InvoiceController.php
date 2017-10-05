@@ -2,6 +2,7 @@
 
 namespace stesi\invoice\controllers;
 
+use app\actions\AddFormInputAction;
 use app\actions\CreateAction;
 use app\actions\DeleteAction;
 use app\actions\IndexAction;
@@ -35,6 +36,9 @@ class InvoiceController extends StesiController
             'delete' => [
                 'class' => DeleteAction::className(),
                 'modelClass' => Invoice::className(),
+            ],
+            'add-form-input' => [
+                'class' => AddFormInputAction::className(),
             ],
             'view' => [
                 'class' => ViewAction::className(),

@@ -6,6 +6,8 @@ use \stesi\invoice\models\base\Invoice as BaseInvoice;
 
 /**
  * This is the model class for table "inv_invoice".
+ *
+ * @property \stesi\invoice\models\InvoiceRow[] $invoiceRows
  */
 class Invoice extends BaseInvoice
 {
@@ -66,5 +68,13 @@ class Invoice extends BaseInvoice
             'tax' => Yii::t('invoice/invoice/hints', 'invoice_hints.tax'),
             'total' => Yii::t('invoice/invoice/hints', 'invoice_hints.total'),
         ];
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getInvoiceRows()
+    {
+        return $this->hasMany(\stesi\invoice\models\InvoiceRow::className(), ['invoice_id' => 'id']);
     }
 }
