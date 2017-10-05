@@ -1,7 +1,7 @@
 <?php
 
 namespace stesi\invoice\models\base;
-use app\models\base\StesiModel;
+use stesi\core\models\base\StesiModel;
 
 use Yii;
 use yii\behaviors\TimestampBehavior;
