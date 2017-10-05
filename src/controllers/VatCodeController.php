@@ -8,7 +8,7 @@ use app\actions\IndexAction;
 use app\actions\ListAction;
 use app\actions\UpdateAction;
 use app\actions\ViewAction;
-use app\controllers\StesiController;
+use stesi\core\controllers\StesiController;
 use stesi\invoice\models\VatCode;
 use yii\db\Query;
 use yii\helpers\Json;
