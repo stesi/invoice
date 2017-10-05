@@ -10,6 +10,7 @@ use Yii;
  *
  * @property integer $id
  * @property string $code
+ * @property double $vat
  */
 class VatCode extends StesiModel
 {
@@ -19,8 +20,9 @@ class VatCode extends StesiModel
     public function rules()
     {
         return [
-            [['code'], 'string', 'max' => 32],
-            [['code'], 'default']
+            [['code'], 'string', 'max' => 120],
+            [['code'], 'default'],
+            [['vat'], 'number'],
         ];
     }
     

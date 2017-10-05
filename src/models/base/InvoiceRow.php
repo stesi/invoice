@@ -15,8 +15,11 @@ use Yii;
  * @property string $measurement_unit
  * @property double $unit_price
  * @property integer $vat_id
+ * @property double $vat_value
  * @property double $tax
+ * @property double $taxable
  * @property double $total_row
+ * @property double $discount
  *
  * @property \stesi\invoice\models\Invoice $invoice
  * @property \stesi\invoice\models\Product $product
@@ -31,7 +34,7 @@ class InvoiceRow extends StesiModel
     {
         return [
             [['invoice_id', 'product_id', 'vat_id'], 'integer'],
-            [['quantity', 'unit_price', 'tax', 'total_row'], 'number'],
+            [['quantity', 'unit_price', 'tax', 'taxable', 'total_row', 'discount', 'vat_value'], 'number'],
             [['measurement_unit'], 'string', 'max' => 20],
             [['measurement_unit'], 'default'],
             [['invoice_id'], 'exist', 'skipOnError' => true, 'targetClass' => \stesi\invoice\models\Invoice::className(), 'targetAttribute' => ['invoice_id' => 'id']],

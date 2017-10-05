@@ -17,6 +17,7 @@ use yii\behaviors\BlameableBehavior;
  * @property string $invoice_type
  * @property string $preamble
  * @property integer $number
+ * @property string $object
  * @property string $year
  * @property string $invoice_date
  * @property string $competence_date
@@ -48,6 +49,8 @@ class Invoice extends StesiModel
             [['subtotal', 'tax', 'total'], 'number'],
             [['preamble'], 'string', 'max' => 20],
             [['preamble'], 'default'],
+            [['object'], 'string', 'max' => 120],
+            [['object'], 'default'],
             [['organization_from_id'], 'exist', 'skipOnError' => true, 'targetClass' => \stesi\invoice\models\Organization::className(), 'targetAttribute' => ['organization_from_id' => 'id']],
             [['organization_to_id'], 'exist', 'skipOnError' => true, 'targetClass' => \stesi\invoice\models\Organization::className(), 'targetAttribute' => ['organization_to_id' => 'id']],
             [['payment_terms_id'], 'exist', 'skipOnError' => true, 'targetClass' => \stesi\invoice\models\PaymentTerms::className(), 'targetAttribute' => ['payment_terms_id' => 'id']]

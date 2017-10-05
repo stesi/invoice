@@ -138,8 +138,8 @@ use kartik\builder\Form;
         'rows' => [
             [
                 'attributes' => [       // 1 column layout
-                    'note' => [
-                        'type' => Form::INPUT_TEXTAREA,
+                    'object' => [
+                        'type' => Form::INPUT_TEXT,
                         'fieldConfig' => [
                             'hintType' => ActiveField::HINT_SPECIAL,
                             'hintSettings' => ['container' => '#invoice-form'],
@@ -158,7 +158,30 @@ use kartik\builder\Form;
                 'dataProvider' => new \yii\data\ArrayDataProvider(['allModels' => $model->invoiceRows]),
                 'form' => $form
             ])
-        ]
+        ],
+        /*
+        [
+            'label' => '<i class="glyphicon glyphicon-book"></i> ' . Html::encode(Yii::t('invoice/invoice/labels', 'invoice_tabs.invoice_row')),
+            'content' => $this->render('_form_required_payment', [
+                'dataProvider' => new \yii\data\ArrayDataProvider(['allModels' => $model->invoiceRows]),
+                'form' => $form
+            ])
+        ],
+        [
+            'label' => '<i class="glyphicon glyphicon-book"></i> ' . Html::encode(Yii::t('invoice/invoice/labels', 'invoice_tabs.invoice_row')),
+            'content' => $this->render('_form_received_payment', [
+                'dataProvider' => new \yii\data\ArrayDataProvider(['allModels' => $model->invoiceRows]),
+                'form' => $form
+            ])
+        ],
+        [
+            'label' => '<i class="glyphicon glyphicon-book"></i> ' . Html::encode(Yii::t('invoice/invoice/labels', 'invoice_tabs.invoice_row')),
+            'content' => $this->render('_form_attached', [
+                'dataProvider' => new \yii\data\ArrayDataProvider(['allModels' => $model->invoiceRows]),
+                'form' => $form
+            ])
+        ],*/
+
     ];
     echo kartik\tabs\TabsX::widget([
         'items' => $subFormsItems,
@@ -169,6 +192,26 @@ use kartik\builder\Form;
             'sideways' => true,
             'enableCache' => false,
         ],
+    ]);
+    ?>
+
+    <?= FormGrid::widget([
+        'model' => $model,
+        'form' => $form,
+        'autoGenerateColumns' => true,
+        'rows' => [
+            [
+                'attributes' => [       // 1 column layout
+                    'note' => [
+                        'type' => Form::INPUT_TEXTAREA,
+                        'fieldConfig' => [
+                            'hintType' => ActiveField::HINT_SPECIAL,
+                            'hintSettings' => ['container' => '#invoice-form'],
+                        ]
+                    ],
+                ]
+            ]
+        ]
     ]);
     ?>
 
