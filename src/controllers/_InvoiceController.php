@@ -16,7 +16,7 @@ use stesi\invoice\models\grid\InvoiceGrid;
 /**
  * InvoiceController implements the CRUD actions for Invoice model.
  */
-class InvoiceController extends StesiController 
+class _InvoiceController extends StesiController
 {
     public function actions()
     {

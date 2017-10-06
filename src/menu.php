@@ -8,7 +8,7 @@ $menu_invoice_invoice=[
     "items" => [
         [
             "label" => Yii::t('app/menu/invoice', 'Invoice'),
-            "url" => ["/invoice/invoice"]
+            "url" => ["/invoice"]
         ],
         [
             "label" => Yii::t('app/menu/payment-terms', 'Payment Terms'),
