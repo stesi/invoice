@@ -44,4 +44,5 @@ class VatCode extends BaseVatCode
             'vat' => Yii::t('invoice/vat_code/hints', 'vat_code_hints.vat'),
         ];
     }
+
 }

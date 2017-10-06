@@ -4,6 +4,7 @@ use kartik\builder\FormGrid;
 use kartik\datecontrol\DateControl;
 use kartik\form\ActiveField;
 use kartik\widgets\Select2;
+use stesi\invoice\models\PaymentTerms;
 use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
 use kartik\form\ActiveForm;
@@ -82,7 +83,7 @@ use kartik\builder\Form;
                             'hintType' => ActiveField::HINT_SPECIAL,
                             'hintSettings' => ['container' => '#invoice-form'],
                         ],
-                        'items' => ['INVOICE', 'PREINVOICE'],
+                        'items' => ['INVOICE'=>'INVOICE', 'PREINVOICE'=>'PREINVOICE'],
                     ]
                 ]
             ],
@@ -96,12 +97,9 @@ use kartik\builder\Form;
                             'hintSettings' => ['container' => '#invoice-form'],
                         ],
                         'options' => [
+                            'data'=>ArrayHelper::map(PaymentTerms::find()->all(), 'id', 'name'),
                             'pluginOptions' => [
                                 'placeholder' => Yii::t('invoice/invoice/labels', 'invoice_labels.form.select_payment_terms'),
-                                'minimumInputLength' => '3',
-                                'ajax' => ArrayHelper::merge(require(Yii::getAlias('@app/config/modules/select2Ajax.php')), [
-                                    'url' => Url::to(['payment-terms/paymentterms-list']),
-                                ]),
                                 'allowClear' => true,
                             ],
                             'initValueText' => ArrayHelper::getValue($model, 'paymentTerms.name'),

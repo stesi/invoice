@@ -11,6 +11,7 @@ use Yii;
  * @property integer $id
  * @property integer $invoice_id
  * @property integer $product_id
+ * @property string $description
  * @property double $quantity
  * @property string $measurement_unit
  * @property double $unit_price
@@ -36,6 +37,7 @@ class InvoiceRow extends StesiModel
             [['invoice_id', 'product_id', 'vat_id'], 'integer'],
             [['quantity', 'unit_price', 'tax', 'taxable', 'total_row', 'discount', 'vat_value'], 'number'],
             [['measurement_unit'], 'string', 'max' => 20],
+            [['description'], 'string'],
             [['measurement_unit'], 'default'],
             [['invoice_id'], 'exist', 'skipOnError' => true, 'targetClass' => \stesi\invoice\models\Invoice::className(), 'targetAttribute' => ['invoice_id' => 'id']],
             [['product_id'], 'exist', 'skipOnError' => true, 'targetClass' => \stesi\invoice\models\Product::className(), 'targetAttribute' => ['product_id' => 'id']],
@@ -73,6 +75,14 @@ class InvoiceRow extends StesiModel
     public function getVat()
     {
         return $this->hasOne(\stesi\invoice\models\VatCode::className(), ['id' => 'vat_id']);
+    }
+
+    /**
+     * @return \stesi\invoice\models\InvoiceRowQuery
+     */
+    public static function find()
+    {
+        return new \stesi\invoice\models\InvoiceRowQuery(get_called_class());
     }
     
 }

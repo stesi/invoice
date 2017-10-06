@@ -6,6 +6,7 @@ use app\actions\CreateAction;
 use app\actions\DeleteAction;
 use app\actions\IndexAction;
 use app\actions\ListAction;
+use app\actions\ListActionQuery;
 use app\actions\UpdateAction;
 use app\actions\ViewAction;
 use stesi\core\controllers\StesiController;
@@ -46,7 +47,12 @@ class VatCodeController extends StesiController
                 'class' => ListAction::className(),
                 'modelClass' => VatCode::className(),
                 'description_name' => 'code',
-            ]
+            ],
+            'vatcode-vat-with-code' => [
+                'class' => ListActionQuery::className(),
+                'description_name' => 'CONCAT(vat,"% - ",code)',
+                'query' =>VatCode::find()
+            ],
         ];
     }
 

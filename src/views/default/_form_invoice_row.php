@@ -64,6 +64,9 @@ if (!isset($form)) {
 
                 },
             ],
+            'description' => [
+                'type' => TabularForm::INPUT_TEXTAREA,
+            ],
 
             'quantity' => [
                 'type' => TabularForm::INPUT_TEXT,
@@ -79,32 +82,25 @@ if (!isset($form)) {
             ],
             'vat_id' => [
                 'type' => TabularForm::INPUT_WIDGET,
-                'widgetClass' => CreatableSelect2::class,
+                'widgetClass' => Select2::class,
                 'options' => function ($model, $key) {
                     $inputId = 'invoicerow_vat_id';
-                    $initValueText = isset($model->vat_id) ? ArrayHelper::map(VatCode::find()->where(['id' => $model['vat_id']])->all(), 'id', 'code') : "";
+                    $initValueText = isset($model->vat_id) ? ArrayHelper::map(VatCode::find()->getVatValueWithCode()->where(['id' => $model['vat_id']])->all(), 'id', 'code') : "";
 
                     return [
                         'initValueText' => $initValueText,
+                        'data'=>ArrayHelper::map(VatCode::find()->getVatValueWithCode()->all(), 'id', 'code'),
+
                         'pluginOptions' => [
-
                             'placeholder' => 'Select a vat...',
-
-                            'minimumInputLength' => '1',
-                            'ajax' => ArrayHelper::merge(require(Yii::getAlias('@app/config/modules/select2Ajax.php')), [
-                                'url' => Url::to(['vat-code/vatcode-list'])
-                            ]),
                         ],
                         'size' => Select2::SMALL,
-                        'options' => [
-                            'id' => $inputId,
-                            'class' => 'js-dependent-input-select2-default', // default trigger action, remove for custom
-                        ],
+
                     ];
 
                 },
             ],
-            'vat_value' => [
+          /*  'vat_value' => [
                 'type' => TabularForm::INPUT_WIDGET,
                 'widgetClass' => DepDrop::className(),
                 'options' => [
@@ -118,12 +114,13 @@ if (!isset($form)) {
                     'select2Options' => ['pluginOptions' => [
                         'allowClear' => true]],
                 ],
-            ],
+            ],*/
             'discount' => [
                 'type' => TabularForm::INPUT_TEXT,
                 'columnOptions'=>[
                     'width'=>'100px'
                 ]
+                  //  <i class="fa fa-calendar"></i>
             ],
 
             'del' => [

@@ -3,6 +3,7 @@
 namespace stesi\invoice\models\base;
 use stesi\core\models\base\StesiModel;
 
+use stesi\invoice\models\VatCodeQuery;
 use Yii;
 
 /**
@@ -32,6 +33,14 @@ class VatCode extends StesiModel
     public static function tableName()
     {
         return 'inv_vat_code';
+    }
+
+    /**
+     * @return VatCodeQuery
+     */
+    public static function find()
+    {
+        return new VatCodeQuery(get_called_class());
     }
 
 }
