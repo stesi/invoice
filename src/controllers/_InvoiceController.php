@@ -2,13 +2,13 @@
 
 namespace stesi\invoice\controllers;
 
-use app\actions\AddFormInputAction;
-use app\actions\CreateAction;
-use app\actions\DeleteAction;
-use app\actions\IndexAction;
-use app\actions\ListAction;
-use app\actions\UpdateAction;
-use app\actions\ViewAction;
+use stesi\core\actions\AddFormInputAction;
+use stesi\core\actions\CreateAction;
+use stesi\core\actions\DeleteAction;
+use stesi\core\actions\IndexAction;
+use stesi\core\actions\ListAction;
+use stesi\core\actions\UpdateAction;
+use stesi\core\actions\ViewAction;
 use stesi\core\controllers\StesiController;
 use stesi\invoice\models\Invoice;
 use stesi\invoice\models\grid\InvoiceGrid;
