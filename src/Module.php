@@ -2,7 +2,7 @@
 
 namespace stesi\invoice;
 
-use app\events\MenuEvent;
+use stesi\core\events\MenuEvent;
 use Yii;
 
 /**
