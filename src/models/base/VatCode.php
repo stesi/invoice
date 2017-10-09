@@ -3,6 +3,7 @@
 namespace stesi\invoice\models\base;
 use stesi\core\models\base\StesiModel;
 
+use stesi\invoice\models\VatCodeQuery;
 use Yii;
 
 /**
@@ -10,6 +11,7 @@ use Yii;
  *
  * @property integer $id
  * @property string $code
+ * @property double $vat
  */
 class VatCode extends StesiModel
 {
@@ -19,8 +21,9 @@ class VatCode extends StesiModel
     public function rules()
     {
         return [
-            [['code'], 'string', 'max' => 32],
-            [['code'], 'default']
+            [['code'], 'string', 'max' => 120],
+            [['code'], 'default'],
+            [['vat'], 'number'],
         ];
     }
     
@@ -30,6 +33,14 @@ class VatCode extends StesiModel
     public static function tableName()
     {
         return 'inv_vat_code';
+    }
+
+    /**
+     * @return VatCodeQuery
+     */
+    public static function find()
+    {
+        return new VatCodeQuery(get_called_class());
     }
 
 }

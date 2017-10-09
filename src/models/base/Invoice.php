@@ -3,6 +3,7 @@
 namespace stesi\invoice\models\base;
 use stesi\core\models\base\StesiModel;
 
+use stesi\invoice\models\Organization;
 use Yii;
 use yii\behaviors\TimestampBehavior;
 use yii\behaviors\BlameableBehavior;
@@ -17,6 +18,7 @@ use yii\behaviors\BlameableBehavior;
  * @property string $invoice_type
  * @property string $preamble
  * @property integer $number
+ * @property string $object
  * @property string $year
  * @property string $invoice_date
  * @property string $competence_date
@@ -26,6 +28,8 @@ use yii\behaviors\BlameableBehavior;
  * @property integer $updated_by
  * @property integer $payment_terms_id
  * @property string $note
+ * @property double $taxable
+ * @property double $discount
  * @property double $subtotal
  * @property double $tax
  * @property double $total
@@ -45,12 +49,14 @@ class Invoice extends StesiModel
             [['organization_from_id', 'organization_to_id', 'number', 'created_by', 'updated_by', 'payment_terms_id'], 'integer'],
             [['status', 'invoice_type', 'note'], 'string'],
             [['year', 'invoice_date', 'competence_date', 'created_at', 'updated_at'], 'safe'],
-            [['subtotal', 'tax', 'total'], 'number'],
+            [['taxable', 'discount', 'subtotal', 'tax', 'total'], 'number'],
             [['preamble'], 'string', 'max' => 20],
             [['preamble'], 'default'],
-            [['organization_from_id'], 'exist', 'skipOnError' => true, 'targetClass' => \stesi\invoice\models\Organization::className(), 'targetAttribute' => ['organization_from_id' => 'id']],
-            [['organization_to_id'], 'exist', 'skipOnError' => true, 'targetClass' => \stesi\invoice\models\Organization::className(), 'targetAttribute' => ['organization_to_id' => 'id']],
-            [['payment_terms_id'], 'exist', 'skipOnError' => true, 'targetClass' => \stesi\invoice\models\PaymentTerms::className(), 'targetAttribute' => ['payment_terms_id' => 'id']]
+            [['object'], 'string', 'max' => 120],
+            [['object'], 'default'],
+            [['organization_from_id'], 'exist', 'skipOnError' => true, 'targetClass' => Organization::className(), 'targetAttribute' => ['organization_from_id' => 'id']],
+            [['organization_to_id'], 'exist', 'skipOnError' => true, 'targetClass' => Organization::className(), 'targetAttribute' => ['organization_to_id' => 'id']],
+            [['payment_terms_id'], 'exist', 'skipOnError' => true, 'targetClass' => PaymentTerms::className(), 'targetAttribute' => ['payment_terms_id' => 'id']]
         ];
     }
     

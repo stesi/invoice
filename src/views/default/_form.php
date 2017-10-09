@@ -4,6 +4,7 @@ use kartik\builder\FormGrid;
 use kartik\datecontrol\DateControl;
 use kartik\form\ActiveField;
 use kartik\widgets\Select2;
+use stesi\invoice\models\PaymentTerms;
 use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
 use kartik\form\ActiveForm;
@@ -82,7 +83,7 @@ use kartik\builder\Form;
                             'hintType' => ActiveField::HINT_SPECIAL,
                             'hintSettings' => ['container' => '#invoice-form'],
                         ],
-                        'items' => ['INVOICE', 'PREINVOICE'],
+                        'items' => ['INVOICE'=>'INVOICE', 'PREINVOICE'=>'PREINVOICE'],
                     ]
                 ]
             ],
@@ -96,12 +97,9 @@ use kartik\builder\Form;
                             'hintSettings' => ['container' => '#invoice-form'],
                         ],
                         'options' => [
+                            'data'=>ArrayHelper::map(PaymentTerms::find()->all(), 'id', 'name'),
                             'pluginOptions' => [
                                 'placeholder' => Yii::t('invoice/invoice/labels', 'invoice_labels.form.select_payment_terms'),
-                                'minimumInputLength' => '3',
-                                'ajax' => ArrayHelper::merge(require(Yii::getAlias('@app/config/modules/select2Ajax.php')), [
-                                    'url' => Url::to(['payment-terms/paymentterms-list']),
-                                ]),
                                 'allowClear' => true,
                             ],
                             'initValueText' => ArrayHelper::getValue($model, 'paymentTerms.name'),
@@ -138,8 +136,8 @@ use kartik\builder\Form;
         'rows' => [
             [
                 'attributes' => [       // 1 column layout
-                    'note' => [
-                        'type' => Form::INPUT_TEXTAREA,
+                    'object' => [
+                        'type' => Form::INPUT_TEXT,
                         'fieldConfig' => [
                             'hintType' => ActiveField::HINT_SPECIAL,
                             'hintSettings' => ['container' => '#invoice-form'],
@@ -158,7 +156,30 @@ use kartik\builder\Form;
                 'dataProvider' => new \yii\data\ArrayDataProvider(['allModels' => $model->invoiceRows]),
                 'form' => $form
             ])
-        ]
+        ],
+        /*
+        [
+            'label' => '<i class="glyphicon glyphicon-book"></i> ' . Html::encode(Yii::t('invoice/invoice/labels', 'invoice_tabs.invoice_row')),
+            'content' => $this->render('_form_required_payment', [
+                'dataProvider' => new \yii\data\ArrayDataProvider(['allModels' => $model->invoiceRows]),
+                'form' => $form
+            ])
+        ],
+        [
+            'label' => '<i class="glyphicon glyphicon-book"></i> ' . Html::encode(Yii::t('invoice/invoice/labels', 'invoice_tabs.invoice_row')),
+            'content' => $this->render('_form_received_payment', [
+                'dataProvider' => new \yii\data\ArrayDataProvider(['allModels' => $model->invoiceRows]),
+                'form' => $form
+            ])
+        ],
+        [
+            'label' => '<i class="glyphicon glyphicon-book"></i> ' . Html::encode(Yii::t('invoice/invoice/labels', 'invoice_tabs.invoice_row')),
+            'content' => $this->render('_form_attached', [
+                'dataProvider' => new \yii\data\ArrayDataProvider(['allModels' => $model->invoiceRows]),
+                'form' => $form
+            ])
+        ],*/
+
     ];
     echo kartik\tabs\TabsX::widget([
         'items' => $subFormsItems,
@@ -169,6 +190,26 @@ use kartik\builder\Form;
             'sideways' => true,
             'enableCache' => false,
         ],
+    ]);
+    ?>
+
+    <?= FormGrid::widget([
+        'model' => $model,
+        'form' => $form,
+        'autoGenerateColumns' => true,
+        'rows' => [
+            [
+                'attributes' => [       // 1 column layout
+                    'note' => [
+                        'type' => Form::INPUT_TEXTAREA,
+                        'fieldConfig' => [
+                            'hintType' => ActiveField::HINT_SPECIAL,
+                            'hintSettings' => ['container' => '#invoice-form'],
+                        ]
+                    ],
+                ]
+            ]
+        ]
     ]);
     ?>
 
@@ -183,3 +224,35 @@ use kartik\builder\Form;
     ?>
 
 </div>
+
+<?php
+
+$script = <<<'JS'
+
+   var form_wrapper=$('.invoice-form');
+
+    form_wrapper.on("change",".invoice_row_qty",function(e) {
+        getTotal($(this));     
+    });
+    form_wrapper.on("change",".invoice_row_uprice",function(e) {
+        getTotal($(this));  
+    }); 
+    form_wrapper.on("change",".invoice_row_discount",function(e) {
+        getTotal($(this)); 
+    });  
+    
+    function getTotal(elem){
+        var tr = elem.closest("tr");
+        $tot= 0;
+        $qty= $(".invoice_row_qty",tr).val();
+        $unit_price= $(".invoice_row_uprice",tr).val();
+        $discount= $(".invoice_row_discount",tr).val();
+        $sub_total=($qty*$unit_price)-(($qty*$unit_price)*$discount/100);
+        $('.invoice_row_subtotal',tr).val($sub_total);
+    }
+    
+       
+JS;
+$this->registerJs($script);
+
+?>

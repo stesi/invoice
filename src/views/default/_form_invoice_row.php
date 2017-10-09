@@ -2,12 +2,14 @@
 
 use app\widgets\CreatableSelect2;
 use kartik\daterange\DateRangePicker;
+use kartik\depdrop\DepDrop;
 use kartik\form\ActiveForm;
 
 use kartik\builder\TabularForm;
 use kartik\widgets\Select2;
 use stesi\invoice\models\InvoiceRow;
 use stesi\invoice\models\Product;
+use stesi\invoice\models\VatCode;
 use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
 
@@ -37,7 +39,6 @@ if (!isset($form)) {
             "id" => ['type' => TabularForm::INPUT_HIDDEN, 'columnOptions' => ['hidden' => true]],
             'product_id' => [
                 'type' => TabularForm::INPUT_WIDGET,
-
                 'widgetClass' => CreatableSelect2::class,
                 'options' => function ($model, $key) {
                     $inputId = 'invoicerow_product_id-' . $key;
@@ -51,7 +52,7 @@ if (!isset($form)) {
 
                             'minimumInputLength' => '1',
                             'ajax' => ArrayHelper::merge(require(Yii::getAlias('@app/config/modules/select2Ajax.php')), [
-                                'url' => Url::to(['/gles/product/product-code-list'])
+                                'url' => Url::to(['/gles/product/product-code-product-type-list'])
                             ]),
                         ],
                         'size' => Select2::SMALL,
@@ -63,6 +64,75 @@ if (!isset($form)) {
 
                 },
             ],
+            'description' => [
+                'type' => TabularForm::INPUT_TEXTAREA,
+            ],
+
+            'quantity' => [
+                'type' => TabularForm::INPUT_TEXT,
+                'columnOptions' => [
+                    'width' => '100px'
+                ],
+                'options' => ['class' => 'invoice_row_qty'
+                ],
+            ],
+            'unit_price' => [
+                'type' => TabularForm::INPUT_TEXT,
+                'columnOptions' => [
+                    'width' => '100px'
+                ],
+                'options' => ['class' => 'invoice_row_uprice'
+                ],
+            ],
+            'discount' => [
+                'type' => TabularForm::INPUT_TEXT,
+                'columnOptions' => [
+                    'width' => '100px'
+                ],
+                'options' => ['class' => 'invoice_row_discount'
+                ],
+                //  <i class="fa fa-calendar"></i>
+            ],
+            'subtotal_row' => [
+                'type' => TabularForm::INPUT_TEXT,
+                'options' => [
+                    'class' => 'invoice_row_subtotal',
+                    'readOnly' => true,
+                ],
+            ],
+            'vat_id' => [
+                'type' => TabularForm::INPUT_WIDGET,
+                'widgetClass' => Select2::class,
+                //'value'=> ArrayHelper::map(VatCode::find()->getVatValueWithCode()->where(['id' => 6])->one(), 'id', 'code'),
+                'options' => function ($model, $key) {
+                    $inputId = 'invoicerow_vat_id';
+                    $initValueText = isset($model->vat_id) ? ArrayHelper::map(VatCode::find()->getVatValueWithCode()->where(['id' => $model['vat_id']])->all(), 'id', 'code') : ArrayHelper::map(VatCode::find()->getVatValueWithCode()->where(['id' => '6'])->all(), 'id', 'code');
+
+                    return [
+                        'initValueText' => $initValueText,
+                        'class' => 'invoice_row_vat_id',
+                        'data' => ArrayHelper::map(VatCode::find()->getVatValueWithCode()->all(), 'id', 'code'),
+                        'size' => Select2::SMALL,
+
+                    ];
+
+                },
+            ],
+            /*  'vat_value' => [
+                  'type' => TabularForm::INPUT_WIDGET,
+                  'widgetClass' => DepDrop::className(),
+                  'options' => [
+                      'type' => DepDrop::TYPE_SELECT2,
+                      'pluginOptions' => [
+                          'depends' => ['invoicerow_vat_id'],
+                          'initialize' => true,
+                          'url' => Url::to(['vat-code/get-vat-value-by-id']),
+                      ],
+                      'options' => ['id' => 'invoicerow_vat_value'],
+                      'select2Options' => ['pluginOptions' => [
+                          'allowClear' => true]],
+                  ],
+              ],*/
 
             'del' => [
                 'type' => 'raw',
@@ -102,8 +172,6 @@ if (!isset($form)) {
                 $this->registerJs("jQuery('#'.$parentFormId).yiiActiveForm('add', $attributes);");
             }
         }
-
     */
-
 
     ?>
