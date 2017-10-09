@@ -36,10 +36,11 @@ class InvoiceRow extends BaseInvoiceRow
             'unit_price' => Yii::t('invoice/invoice_row/labels', 'invoice_row_labels.unit_price'),
             'vat_id' => Yii::t('invoice/invoice_row/labels', 'invoice_row_labels.vat_id'),
             'vat_value' => Yii::t('invoice/invoice_row/labels', 'invoice_row_labels.vat_value'),
-            'tax' => Yii::t('invoice/invoice_row/labels', 'invoice_row_labels.tax'),
             'taxable' => Yii::t('invoice/invoice_row/labels', 'invoice_row_labels.taxable'),
-            'total_row' => Yii::t('invoice/invoice_row/labels', 'invoice_row_labels.total_row'),
             'discount' => Yii::t('invoice/invoice_row/labels', 'invoice_row_labels.discount'),
+            'subtotal_row' => Yii::t('invoice/invoice_row/labels', 'invoice_row_labels.subtotal_row'),
+            'tax' => Yii::t('invoice/invoice_row/labels', 'invoice_row_labels.tax'),
+            'total_row' => Yii::t('invoice/invoice_row/labels', 'invoice_row_labels.total_row'),
         ];
     }
 
@@ -58,19 +59,27 @@ class InvoiceRow extends BaseInvoiceRow
             'unit_price' => Yii::t('invoice/invoice_row/hints', 'invoice_row_hints.unit_price'),
             'vat_id' => Yii::t('invoice/invoice_row/hints', 'invoice_row_hints.vat_id'),
             'vat_value' => Yii::t('invoice/invoice_row/hints', 'invoice_row_hints.vat_value'),
-            'tax' => Yii::t('invoice/invoice_row/hints', 'invoice_row_hints.tax'),
             'taxable' => Yii::t('invoice/invoice_row/hints', 'invoice_row_hints.taxable'),
-            'total_row' => Yii::t('invoice/invoice_row/hints', 'invoice_row_hints.total_row'),
             'discount' => Yii::t('invoice/invoice_row/hints', 'invoice_row_hints.discount'),
+            'subtotal_row' => Yii::t('invoice/invoice_row/hints', 'invoice_row_hints.subtotal_row'),
+            'tax' => Yii::t('invoice/invoice_row/hints', 'invoice_row_hints.tax'),
+            'total_row' => Yii::t('invoice/invoice_row/hints', 'invoice_row_hints.total_row'),
         ];
     }
 
     public function beforeSave($insert)
     {
-        $this->vat_value=isset($this->vat_id) ? $this->vat->vat : 0;
+        $this->vat_value=!empty($this->vat_id) ? $this->vat->vat : 0;
+
+        $this->quantity=!empty($this->quantity)? $this->quantity : 0;
+        $this->unit_price=!empty($this->unit_price)? $this->unit_price : 0;
         $this->taxable=$this->unit_price*$this->quantity;
+
+        $discount=!empty($this->discount) ? $this->discount : 0;
+        $sub_total=$this->taxable-($this->taxable*$discount/100);
+
         $this->tax=$this->taxable*$this->vat_value/100;
-        $discount=!isset($this->discount)?0:$this->discount;
+
         $total_row=$this->tax+$this->taxable;
         $this->total_row=$total_row-($total_row*$discount/100);
 
