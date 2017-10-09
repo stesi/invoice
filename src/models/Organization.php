@@ -7,7 +7,7 @@ use app\services\StesiTools;
 use kartik\helpers\Html;
 
 use nhkey\arh\ActiveRecordHistoryBehavior;
-use app\services\UploadImageBehavior;
+use stesi\core\behaviors\UploadImageBehavior;
 use Yii;
 
 

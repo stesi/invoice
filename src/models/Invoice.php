@@ -2,7 +2,7 @@
 
 namespace stesi\invoice\models;
 
-use app\services\UploadImageBehavior;
+use stesi\core\behaviors\UploadImageBehavior;
 use nhkey\arh\ActiveRecordHistoryBehavior;
 use Yii;
 use \stesi\invoice\models\base\Invoice as BaseInvoice;
