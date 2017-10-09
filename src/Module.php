@@ -28,6 +28,9 @@ class Module extends \yii\base\Module
         Yii::$app->view->on(MenuEvent::EVENT_BEFORE_RENDER, [$this, 'addMenuItems']);
     }
 
+    /**
+     * @param $menuEvent MenuEvent
+     */
 
     public function addMenuItems($menuEvent)
     {
