@@ -3,6 +3,7 @@
 namespace stesi\invoice\models\base;
 use stesi\core\models\base\StesiModel;
 
+use stesi\invoice\models\Product;
 use Yii;
 
 /**
@@ -17,11 +18,11 @@ use Yii;
  * @property double $unit_price
  * @property integer $vat_id
  * @property double $vat_value
- * @property double $tax
  * @property double $taxable
- * @property double $total_row
  * @property double $discount
- *
+ * @property double $subtotal_row
+ * @property double $tax
+ * @property double $total_row
  * @property \stesi\invoice\models\Invoice $invoice
  * @property \stesi\invoice\models\Product $product
  * @property \stesi\invoice\models\VatCode $vat
@@ -35,13 +36,14 @@ class InvoiceRow extends StesiModel
     {
         return [
             [['invoice_id', 'product_id', 'vat_id'], 'integer'],
-            [['quantity', 'unit_price', 'tax', 'taxable', 'total_row', 'discount', 'vat_value'], 'number'],
-            [['measurement_unit'], 'string', 'max' => 20],
+            [['product_id'], 'required'],
             [['description'], 'string'],
+            [['quantity', 'unit_price', 'vat_value', 'taxable', 'discount', 'subtotal_row', 'tax', 'total_row'], 'number'],
+            [['measurement_unit'], 'string', 'max' => 20],
             [['measurement_unit'], 'default'],
-            [['invoice_id'], 'exist', 'skipOnError' => true, 'targetClass' => \stesi\invoice\models\Invoice::className(), 'targetAttribute' => ['invoice_id' => 'id']],
-            [['product_id'], 'exist', 'skipOnError' => true, 'targetClass' => \stesi\invoice\models\Product::className(), 'targetAttribute' => ['product_id' => 'id']],
-            [['vat_id'], 'exist', 'skipOnError' => true, 'targetClass' => \stesi\invoice\models\VatCode::className(), 'targetAttribute' => ['vat_id' => 'id']]
+            [['invoice_id'], 'exist', 'skipOnError' => true, 'targetClass' => Invoice::className(), 'targetAttribute' => ['invoice_id' => 'id']],
+            [['product_id'], 'exist', 'skipOnError' => true, 'targetClass' => Product::className(), 'targetAttribute' => ['product_id' => 'id']],
+            [['vat_id'], 'exist', 'skipOnError' => true, 'targetClass' => VatCode::className(), 'targetAttribute' => ['vat_id' => 'id']]
         ];
     }
     
