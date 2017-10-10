@@ -1,21 +1,21 @@
 <?php
 
-namespace stesi\invoice\controllers;
+namespace stesi\core\models\base\StesiModel\controllers;
 
 use stesi\core\actions\CreateAction;
 use stesi\core\actions\IndexAction;
-use stesi\invoice\models\grid\InvoiceGrid;
+use stesi\core\models\base\StesiModel\models\grid\InvoiceGrid;
 use stesi\core\controllers\StesiController;
 use stesi\core\actions\AddFormInputAction;
 use stesi\core\actions\DeleteAction;
 use stesi\core\actions\ListAction;
 use stesi\core\actions\UpdateAction;
 use stesi\core\actions\ViewAction;
-use stesi\invoice\models\Invoice;
+use stesi\core\models\base\StesiModel\models\Invoice;
 
 
 /**
- * Default controller for the `invoice` module
+ * Default controller for the `billing` module
  */
 class DefaultController extends StesiController
 {
@@ -48,7 +48,7 @@ class DefaultController extends StesiController
                 'class' => ViewAction::className(),
                 'modelClass' => Invoice::className(),
             ],
-            'invoice-list' => [
+            'billing-list' => [
                 'class' => ListAction::className(),
                 'modelClass' => Invoice::className(),
             ]

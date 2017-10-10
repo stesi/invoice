@@ -1,17 +1,17 @@
 <?php
 
-namespace stesi\invoice\models;
+namespace stesi\core\models\base\StesiModel\models;
 
 use stesi\core\behaviors\UploadImageBehavior;
 use nhkey\arh\ActiveRecordHistoryBehavior;
 use Yii;
-use \stesi\invoice\models\base\Invoice as BaseInvoice;
+use \stesi\core\models\base\StesiModel\models\base\Invoice as BaseInvoice;
 use yii\base\ErrorException;
 
 /**
  * This is the model class for table "inv_invoice".
  *
- * @property \stesi\invoice\models\InvoiceRow[] $invoiceRows
+ * @property \stesi\core\models\base\StesiModel\models\InvoiceRow[] $invoiceRows
  */
 class Invoice extends BaseInvoice
 {
@@ -35,24 +35,24 @@ class Invoice extends BaseInvoice
     public function attributeLabels()
     {
         return [
-            'id' => Yii::t('invoice/invoice/labels', 'invoice_labels.id'),
-            'organization_from_id' => Yii::t('invoice/invoice/labels', 'invoice_labels.organization_from_id'),
-            'organization_to_id' => Yii::t('invoice/invoice/labels', 'invoice_labels.organization_to_id'),
-            'status' => Yii::t('invoice/invoice/labels', 'invoice_labels.status'),
-            'invoice_type' => Yii::t('invoice/invoice/labels', 'invoice_labels.invoice_type'),
-            'preamble' => Yii::t('invoice/invoice/labels', 'invoice_labels.preamble'),
-            'number' => Yii::t('invoice/invoice/labels', 'invoice_labels.number'),
-            'object' => Yii::t('invoice/invoice/labels', 'invoice_labels.object'),
-            'year' => Yii::t('invoice/invoice/labels', 'invoice_labels.year'),
-            'invoice_date' => Yii::t('invoice/invoice/labels', 'invoice_labels.invoice_date'),
-            'competence_date' => Yii::t('invoice/invoice/labels', 'invoice_labels.competence_date'),
-            'payment_terms_id' => Yii::t('invoice/invoice/labels', 'invoice_labels.payment_terms_id'),
-            'note' => Yii::t('invoice/invoice/labels', 'invoice_labels.note'),
-            'taxable' => Yii::t('invoice/invoice/labels', 'invoice_labels.taxable'),
-            'discount' => Yii::t('invoice/invoice/labels', 'invoice_labels.discount'),
-            'subtotal' => Yii::t('invoice/invoice/labels', 'invoice_labels.subtotal'),
-            'tax' => Yii::t('invoice/invoice/labels', 'invoice_labels.tax'),
-            'total' => Yii::t('invoice/invoice/labels', 'invoice_labels.total'),
+            'id' => Yii::t('billing/billing/labels', 'invoice_labels.id'),
+            'organization_from_id' => Yii::t('billing/billing/labels', 'invoice_labels.organization_from_id'),
+            'organization_to_id' => Yii::t('billing/billing/labels', 'invoice_labels.organization_to_id'),
+            'status' => Yii::t('billing/billing/labels', 'invoice_labels.status'),
+            'invoice_type' => Yii::t('billing/billing/labels', 'invoice_labels.invoice_type'),
+            'preamble' => Yii::t('billing/billing/labels', 'invoice_labels.preamble'),
+            'number' => Yii::t('billing/billing/labels', 'invoice_labels.number'),
+            'object' => Yii::t('billing/billing/labels', 'invoice_labels.object'),
+            'year' => Yii::t('billing/billing/labels', 'invoice_labels.year'),
+            'invoice_date' => Yii::t('billing/billing/labels', 'invoice_labels.invoice_date'),
+            'competence_date' => Yii::t('billing/billing/labels', 'invoice_labels.competence_date'),
+            'payment_terms_id' => Yii::t('billing/billing/labels', 'invoice_labels.payment_terms_id'),
+            'note' => Yii::t('billing/billing/labels', 'invoice_labels.note'),
+            'taxable' => Yii::t('billing/billing/labels', 'invoice_labels.taxable'),
+            'discount' => Yii::t('billing/billing/labels', 'invoice_labels.discount'),
+            'subtotal' => Yii::t('billing/billing/labels', 'invoice_labels.subtotal'),
+            'tax' => Yii::t('billing/billing/labels', 'invoice_labels.tax'),
+            'total' => Yii::t('billing/billing/labels', 'invoice_labels.total'),
         ];
     }
 
@@ -62,24 +62,24 @@ class Invoice extends BaseInvoice
     public function attributeHints()
     {
         return [
-            'id' => Yii::t('invoice/invoice/hints', 'invoice_hints.id'),
-            'organization_from_id' => Yii::t('invoice/invoice/hints', 'invoice_hints.organization_from_id'),
-            'organization_to_id' => Yii::t('invoice/invoice/hints', 'invoice_hints.organization_to_id'),
-            'status' => Yii::t('invoice/invoice/hints', 'invoice_hints.status'),
-            'invoice_type' => Yii::t('invoice/invoice/hints', 'invoice_hints.invoice_type'),
-            'preamble' => Yii::t('invoice/invoice/hints', 'invoice_hints.preamble'),
-            'number' => Yii::t('invoice/invoice/hints', 'invoice_hints.number'),
-            'object' => Yii::t('invoice/invoice/hints', 'invoice_hints.object'),
-            'year' => Yii::t('invoice/invoice/hints', 'invoice_hints.year'),
-            'invoice_date' => Yii::t('invoice/invoice/hints', 'invoice_hints.invoice_date'),
-            'competence_date' => Yii::t('invoice/invoice/hints', 'invoice_hints.competence_date'),
-            'payment_terms_id' => Yii::t('invoice/invoice/hints', 'invoice_hints.payment_terms_id'),
-            'note' => Yii::t('invoice/invoice/hints', 'invoice_hints.note'),
-            'taxable' => Yii::t('invoice/invoice/hints', 'invoice_hints.taxable'),
-            'discount' => Yii::t('invoice/invoice/hints', 'invoice_hints.discount'),
-            'subtotal' => Yii::t('invoice/invoice/hints', 'invoice_hints.subtotal'),
-            'tax' => Yii::t('invoice/invoice/hints', 'invoice_hints.tax'),
-            'total' => Yii::t('invoice/invoice/hints', 'invoice_hints.total'),
+            'id' => Yii::t('billing/billing/hints', 'invoice_hints.id'),
+            'organization_from_id' => Yii::t('billing/billing/hints', 'invoice_hints.organization_from_id'),
+            'organization_to_id' => Yii::t('billing/billing/hints', 'invoice_hints.organization_to_id'),
+            'status' => Yii::t('billing/billing/hints', 'invoice_hints.status'),
+            'invoice_type' => Yii::t('billing/billing/hints', 'invoice_hints.invoice_type'),
+            'preamble' => Yii::t('billing/billing/hints', 'invoice_hints.preamble'),
+            'number' => Yii::t('billing/billing/hints', 'invoice_hints.number'),
+            'object' => Yii::t('billing/billing/hints', 'invoice_hints.object'),
+            'year' => Yii::t('billing/billing/hints', 'invoice_hints.year'),
+            'invoice_date' => Yii::t('billing/billing/hints', 'invoice_hints.invoice_date'),
+            'competence_date' => Yii::t('billing/billing/hints', 'invoice_hints.competence_date'),
+            'payment_terms_id' => Yii::t('billing/billing/hints', 'invoice_hints.payment_terms_id'),
+            'note' => Yii::t('billing/billing/hints', 'invoice_hints.note'),
+            'taxable' => Yii::t('billing/billing/hints', 'invoice_hints.taxable'),
+            'discount' => Yii::t('billing/billing/hints', 'invoice_hints.discount'),
+            'subtotal' => Yii::t('billing/billing/hints', 'invoice_hints.subtotal'),
+            'tax' => Yii::t('billing/billing/hints', 'invoice_hints.tax'),
+            'total' => Yii::t('billing/billing/hints', 'invoice_hints.total'),
         ];
     }
 
@@ -88,7 +88,7 @@ class Invoice extends BaseInvoice
      */
     public function getInvoiceRows()
     {
-        return $this->hasMany(\stesi\invoice\models\InvoiceRow::className(), ['invoice_id' => 'id']);
+        return $this->hasMany(\stesi\core\models\base\StesiModel\models\InvoiceRow::className(), ['invoice_id' => 'id']);
     }
 
     public function beforeSave($insert)

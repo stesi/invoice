@@ -1,6 +1,6 @@
 <?php
 
-namespace stesi\invoice\controllers;
+namespace stesi\core\models\base\StesiModel\controllers;
 
 use stesi\core\actions\CreateAction;
 use stesi\core\actions\DeleteAction;
@@ -10,7 +10,7 @@ use stesi\core\actions\ListActionQuery;
 use stesi\core\actions\UpdateAction;
 use stesi\core\actions\ViewAction;
 use stesi\core\controllers\StesiController;
-use stesi\invoice\models\VatCode;
+use stesi\core\models\base\StesiModel\models\VatCode;
 use yii\db\Query;
 use yii\helpers\Json;
 use yii\web\BadRequestHttpException;

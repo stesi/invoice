@@ -1,6 +1,6 @@
 <?php
 
-namespace stesi\invoice\controllers;
+namespace stesi\core\models\base\StesiModel\controllers;
 
 use stesi\core\actions\CreateAction;
 use stesi\core\actions\DeleteAction;
@@ -9,8 +9,8 @@ use stesi\core\actions\ListAction;
 use stesi\core\actions\UpdateAction;
 use stesi\core\actions\ViewAction;
 use stesi\core\controllers\StesiController;
-use stesi\invoice\models\PaymentTerms;
-use stesi\invoice\models\grid\PaymentTermsGrid;
+use stesi\core\models\base\StesiModel\models\PaymentTerms;
+use stesi\core\models\base\StesiModel\models\grid\PaymentTermsGrid;
 
 /**
  * PaymentTermsController implements the CRUD actions for PaymentTerms model.

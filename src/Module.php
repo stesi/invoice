@@ -1,12 +1,12 @@
 <?php
 
-namespace stesi\invoice;
+namespace stesi\billing;
 
 use stesi\core\events\MenuEvent;
 use Yii;
 
 /**
- * invoice module definition class
+ * billing module definition class
  */
 class Module extends \yii\base\Module
 {

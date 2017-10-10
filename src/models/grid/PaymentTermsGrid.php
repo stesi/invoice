@@ -1,12 +1,12 @@
 <?php
 
-namespace stesi\invoice\models\grid;
+namespace stesi\core\models\base\StesiModel\models\grid;
 
 use Yii;
 use yii\data\ActiveDataProvider;
 
 /**
- * PaymentTermsGrid represents the model behind the search form about `stesi\invoice\models\PaymentTerms`.
+ * PaymentTermsGrid represents the model behind the search form about `stesi\billing\models\PaymentTerms`.
  */
 class PaymentTermsGrid extends yii\db\ActiveRecord
 {

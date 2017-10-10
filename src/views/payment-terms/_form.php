@@ -7,7 +7,7 @@ use yii\bootstrap\Alert;
 use yii\widgets\Pjax;
 
 /* @var $this yii\web\View */
-/* @var $model stesi\invoice\models\PaymentTerms */
+/* @var $model stesi\core\models\base\StesiModel\models\PaymentTerms */
 /* @var $form yii\widgets\ActiveForm */
 ?>
 <?php Pjax::begin();?>

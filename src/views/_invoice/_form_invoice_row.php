@@ -7,9 +7,9 @@ use kartik\form\ActiveForm;
 
 use kartik\builder\TabularForm;
 use kartik\widgets\Select2;
-use stesi\invoice\models\InvoiceRow;
-use stesi\invoice\models\Product;
-use stesi\invoice\models\VatCode;
+use stesi\core\models\base\StesiModel\models\InvoiceRow;
+use stesi\core\models\base\StesiModel\models\Product;
+use stesi\core\models\base\StesiModel\models\VatCode;
 use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
 
@@ -17,10 +17,10 @@ use yii\helpers\Url;
 use yii\web\JsExpression;
 
 $subformName = 'invoice_row';
-$subformId = 'tabular-form-invoice-invoice-row-wrapper';
+$subformId = 'tabular-form-billing-billing-row-wrapper';
 $modelName = InvoiceRow::class;
-$buttonAddMessage = Yii::t('invoice/invoice/buttons', 'invoice_buttons.subform.add_invoice_row');
-$parentFormId = 'invoice-form';
+$buttonAddMessage = Yii::t('billing/billing/buttons', 'invoice_buttons.subform.add_invoice_row');
+$parentFormId = 'billing-form';
 
 if (!isset($form)) {
     $form = ActiveForm::begin();

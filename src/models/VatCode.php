@@ -1,9 +1,9 @@
 <?php
 
-namespace stesi\invoice\models;
+namespace stesi\core\models\base\StesiModel\models;
 
 use Yii;
-use \stesi\invoice\models\base\VatCode as BaseVatCode;
+use \stesi\core\models\base\StesiModel\models\base\VatCode as BaseVatCode;
 
 /**
  * This is the model class for table "inv_vat_code".
@@ -27,9 +27,9 @@ class VatCode extends BaseVatCode
     public function attributeLabels()
     {
         return [
-            'id' => Yii::t('invoice/vat_code/labels', 'vat_code_labels.id'),
-            'code' => Yii::t('invoice/vat_code/labels', 'vat_code_labels.code'),
-            'vat' => Yii::t('invoice/vat_code/labels', 'vat_code_labels.vat'),
+            'id' => Yii::t('billing/vat_code/labels', 'vat_code_labels.id'),
+            'code' => Yii::t('billing/vat_code/labels', 'vat_code_labels.code'),
+            'vat' => Yii::t('billing/vat_code/labels', 'vat_code_labels.vat'),
         ];
     }
 
@@ -39,9 +39,9 @@ class VatCode extends BaseVatCode
     public function attributeHints()
     {
         return [
-            'id' => Yii::t('invoice/vat_code/hints', 'vat_code_hints.id'),
-            'code' => Yii::t('invoice/vat_code/hints', 'vat_code_hints.code'),
-            'vat' => Yii::t('invoice/vat_code/hints', 'vat_code_hints.vat'),
+            'id' => Yii::t('billing/vat_code/hints', 'vat_code_hints.id'),
+            'code' => Yii::t('billing/vat_code/hints', 'vat_code_hints.code'),
+            'vat' => Yii::t('billing/vat_code/hints', 'vat_code_hints.vat'),
         ];
     }
 

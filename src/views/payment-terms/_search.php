@@ -4,7 +4,7 @@ use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
 /* @var $this yii\web\View */
-/* @var $model stesi\invoice\models\grid\PaymentTermsGrid */
+/* @var $model stesi\core\models\base\StesiModel\models\grid\PaymentTermsGrid */
 /* @var $form yii\widgets\ActiveForm */
 ?>
 

@@ -11,7 +11,7 @@ use yii\helpers\Url;
 use kartik\builder\Form;
 
 /* @var $this yii\web\View */
-/* @var $model stesi\invoice\models\Invoice */
+/* @var $model stesi\core\models\base\StesiModel\models\Invoice */
 /* @var $form kartik\form\ActiveForm */
 
 
@@ -22,7 +22,7 @@ use kartik\builder\Form;
 
     <?php $form = ActiveForm::begin([
         'options' => ['data-pjax' => true],
-        'id' => 'invoice-form',
+        'id' => 'billing-form',
         //'enableAjaxValidation' => true
     ]); ?>
 
@@ -38,11 +38,11 @@ use kartik\builder\Form;
                         'widgetClass' => Select2::class,
                         'fieldConfig' => [
                             'hintType' => ActiveField::HINT_SPECIAL,
-                            'hintSettings' => ['container' => '#invoice-form'],
+                            'hintSettings' => ['container' => '#billing-form'],
                         ],
                         'options' => [
                             'pluginOptions' => [
-                                'placeholder' => Yii::t('invoice/invoice/labels', 'invoice_labels.form.select_customer'),
+                                'placeholder' => Yii::t('billing/billing/labels', 'invoice_labels.form.select_customer'),
                                 'minimumInputLength' => '3',
                                 'ajax' => ArrayHelper::merge(require(Yii::getAlias('@app/config/modules/select2Ajax.php')), [
                                     'url' => Url::to(['organization/customer-list']),
@@ -61,14 +61,14 @@ use kartik\builder\Form;
                         'type' => Form::INPUT_TEXT,
                         'fieldConfig' => [
                             'hintType' => ActiveField::HINT_SPECIAL,
-                            'hintSettings' => ['container' => '#invoice-form'],
+                            'hintSettings' => ['container' => '#billing-form'],
                         ]
                     ],
                     'number' => [
                         'type' => Form::INPUT_TEXT,
                         'fieldConfig' => [
                             'hintType' => ActiveField::HINT_SPECIAL,
-                            'hintSettings' => ['container' => '#invoice-form'],
+                            'hintSettings' => ['container' => '#billing-form'],
                         ]
                     ]
                 ],
@@ -80,7 +80,7 @@ use kartik\builder\Form;
                         'type' => Form::INPUT_DROPDOWN_LIST,
                         'fieldConfig' => [
                             'hintType' => ActiveField::HINT_SPECIAL,
-                            'hintSettings' => ['container' => '#invoice-form'],
+                            'hintSettings' => ['container' => '#billing-form'],
                         ],
                         'items' => ['INVOICE', 'PREINVOICE'],
                     ]
@@ -93,11 +93,11 @@ use kartik\builder\Form;
                         'widgetClass' => Select2::class,
                         'fieldConfig' => [
                             'hintType' => ActiveField::HINT_SPECIAL,
-                            'hintSettings' => ['container' => '#invoice-form'],
+                            'hintSettings' => ['container' => '#billing-form'],
                         ],
                         'options' => [
                             'pluginOptions' => [
-                                'placeholder' => Yii::t('invoice/invoice/labels', 'invoice_labels.form.select_payment_terms'),
+                                'placeholder' => Yii::t('billing/billing/labels', 'invoice_labels.form.select_payment_terms'),
                                 'minimumInputLength' => '3',
                                 'ajax' => ArrayHelper::merge(require(Yii::getAlias('@app/config/modules/select2Ajax.php')), [
                                     'url' => Url::to(['payment-terms/paymentterms-list']),
@@ -116,14 +116,14 @@ use kartik\builder\Form;
     ]);
 
     echo $form->field($model, 'invoice_date', ['hintType' => \kartik\form\ActiveField::HINT_SPECIAL,
-        'hintSettings' => ['container' => '#invoice-form']
+        'hintSettings' => ['container' => '#billing-form']
     ])->widget(DateControl::className(), [
         'type' => DateControl::FORMAT_DATETIME,
         'options' => ['placeholder' => 'Enter date ...']
     ]);
 
     echo $form->field($model, 'competence_date', ['hintType' => \kartik\form\ActiveField::HINT_SPECIAL,
-        'hintSettings' => ['container' => '#invoice-form']
+        'hintSettings' => ['container' => '#billing-form']
     ])->widget(DateControl::className(), [
         'type' => DateControl::FORMAT_DATETIME,
         'options' => ['placeholder' => 'Enter date ...']
@@ -142,7 +142,7 @@ use kartik\builder\Form;
                         'type' => Form::INPUT_TEXT,
                         'fieldConfig' => [
                             'hintType' => ActiveField::HINT_SPECIAL,
-                            'hintSettings' => ['container' => '#invoice-form'],
+                            'hintSettings' => ['container' => '#billing-form'],
                         ]
                     ],
                 ]
@@ -153,7 +153,7 @@ use kartik\builder\Form;
 
     <?php $subFormsItems = [
         [
-            'label' => '<i class="glyphicon glyphicon-book"></i> ' . Html::encode(Yii::t('invoice/invoice/labels', 'invoice_tabs.invoice_row')),
+            'label' => '<i class="glyphicon glyphicon-book"></i> ' . Html::encode(Yii::t('billing/billing/labels', 'invoice_tabs.invoice_row')),
             'content' => $this->render('_form_invoice_row', [
                 'dataProvider' => new \yii\data\ArrayDataProvider(['allModels' => $model->invoiceRows]),
                 'form' => $form
@@ -161,21 +161,21 @@ use kartik\builder\Form;
         ],
         /*
         [
-            'label' => '<i class="glyphicon glyphicon-book"></i> ' . Html::encode(Yii::t('invoice/invoice/labels', 'invoice_tabs.invoice_row')),
+            'label' => '<i class="glyphicon glyphicon-book"></i> ' . Html::encode(Yii::t('billing/billing/labels', 'invoice_tabs.invoice_row')),
             'content' => $this->render('_form_required_payment', [
                 'dataProvider' => new \yii\data\ArrayDataProvider(['allModels' => $model->invoiceRows]),
                 'form' => $form
             ])
         ],
         [
-            'label' => '<i class="glyphicon glyphicon-book"></i> ' . Html::encode(Yii::t('invoice/invoice/labels', 'invoice_tabs.invoice_row')),
+            'label' => '<i class="glyphicon glyphicon-book"></i> ' . Html::encode(Yii::t('billing/billing/labels', 'invoice_tabs.invoice_row')),
             'content' => $this->render('_form_received_payment', [
                 'dataProvider' => new \yii\data\ArrayDataProvider(['allModels' => $model->invoiceRows]),
                 'form' => $form
             ])
         ],
         [
-            'label' => '<i class="glyphicon glyphicon-book"></i> ' . Html::encode(Yii::t('invoice/invoice/labels', 'invoice_tabs.invoice_row')),
+            'label' => '<i class="glyphicon glyphicon-book"></i> ' . Html::encode(Yii::t('billing/billing/labels', 'invoice_tabs.invoice_row')),
             'content' => $this->render('_form_attached', [
                 'dataProvider' => new \yii\data\ArrayDataProvider(['allModels' => $model->invoiceRows]),
                 'form' => $form
@@ -206,7 +206,7 @@ use kartik\builder\Form;
                         'type' => Form::INPUT_TEXTAREA,
                         'fieldConfig' => [
                             'hintType' => ActiveField::HINT_SPECIAL,
-                            'hintSettings' => ['container' => '#invoice-form'],
+                            'hintSettings' => ['container' => '#billing-form'],
                         ]
                     ],
                 ]

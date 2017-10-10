@@ -1,8 +1,8 @@
 <?php
 
-namespace stesi\invoice\models;
+namespace stesi\core\models\base\StesiModel\models;
 use Yii;
-use \stesi\invoice\models\base\PaymentTerms as BasePaymentTerms;
+use \stesi\core\models\base\StesiModel\models\base\PaymentTerms as BasePaymentTerms;
 
 /**
  * This is the model class for table "inv_payment_terms".
@@ -26,8 +26,8 @@ class PaymentTerms extends BasePaymentTerms
     public function attributeLabels()
     {
         return [
-        'id' => Yii::t('invoice/payment_terms/labels', 'payment_terms_labels.id'),
-        'name' => Yii::t('invoice/payment_terms/labels', 'payment_terms_labels.name'),
+        'id' => Yii::t('billing/payment_terms/labels', 'payment_terms_labels.id'),
+        'name' => Yii::t('billing/payment_terms/labels', 'payment_terms_labels.name'),
         ];
     }
 	
@@ -37,8 +37,8 @@ class PaymentTerms extends BasePaymentTerms
     public function attributeHints()
     {
         return [
-            'id' => Yii::t('invoice/payment_terms/hints', 'payment_terms_hints.id'),
-            'name' => Yii::t('invoice/payment_terms/hints', 'payment_terms_hints.name'),
+            'id' => Yii::t('billing/payment_terms/hints', 'payment_terms_hints.id'),
+            'name' => Yii::t('billing/payment_terms/hints', 'payment_terms_hints.name'),
         ];
     }
 }

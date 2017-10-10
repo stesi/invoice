@@ -2,17 +2,17 @@
 
 
 $menu_invoice_invoice=[
-    'label' => '<i class="fa fa-fw fa-eur"></i> ' . Yii::t('app/menu/invoice', 'Invoice') . '</span>',
-    'url' => ["/invoice/invoice"],
+    'label' => '<i class="fa fa-fw fa-eur"></i> ' . Yii::t('app/menu/billing', 'Invoice') . '</span>',
+    'url' => ["/billing/billing"],
     'indexLabelMenu' => 'Invoice',
     "items" => [
         [
-            "label" => Yii::t('app/menu/invoice', 'Invoice'),
-            "url" => ["/invoice"]
+            "label" => Yii::t('app/menu/billing', 'Invoice'),
+            "url" => ["/billing"]
         ],
         [
             "label" => Yii::t('app/menu/payment-terms', 'Payment Terms'),
-            "url" => ["/invoice/payment-terms"]
+            "url" => ["/billing/payment-terms"]
         ],
     ]
 ];
