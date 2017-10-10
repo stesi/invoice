@@ -4,7 +4,7 @@ use kartik\builder\FormGrid;
 use kartik\datecontrol\DateControl;
 use kartik\form\ActiveField;
 use kartik\widgets\Select2;
-use stesi\invoice\models\PaymentTerms;
+use stesi\billing\models\PaymentTerms;
 use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
 use kartik\form\ActiveForm;
@@ -12,7 +12,7 @@ use yii\helpers\Url;
 use kartik\builder\Form;
 
 /* @var $this yii\web\View */
-/* @var $model stesi\invoice\models\Invoice */
+/* @var $model stesi\billing\models\Invoice */
 /* @var $form kartik\form\ActiveForm */
 
 
@@ -43,7 +43,7 @@ use kartik\builder\Form;
                         ],
                         'options' => [
                             'pluginOptions' => [
-                                'placeholder' => Yii::t('invoice/invoice/labels', 'invoice_labels.form.select_customer'),
+                                'placeholder' => Yii::t('billing/invoice/labels', 'invoice_labels.form.select_customer'),
                                 'minimumInputLength' => '3',
                                 'ajax' => ArrayHelper::merge(require(Yii::getAlias('@app/config/modules/select2Ajax.php')), [
                                     'url' => Url::to(['organization/customer-list']),
@@ -99,7 +99,7 @@ use kartik\builder\Form;
                         'options' => [
                             'data'=>ArrayHelper::map(PaymentTerms::find()->all(), 'id', 'name'),
                             'pluginOptions' => [
-                                'placeholder' => Yii::t('invoice/invoice/labels', 'invoice_labels.form.select_payment_terms'),
+                                'placeholder' => Yii::t('billing/invoice/labels', 'invoice_labels.form.select_payment_terms'),
                                 'allowClear' => true,
                             ],
                             'initValueText' => ArrayHelper::getValue($model, 'paymentTerms.name'),
@@ -151,7 +151,7 @@ use kartik\builder\Form;
 
     <?php $subFormsItems = [
         [
-            'label' => '<i class="glyphicon glyphicon-book"></i> ' . Html::encode(Yii::t('invoice/invoice/labels', 'invoice_tabs.invoice_row')),
+            'label' => '<i class="glyphicon glyphicon-book"></i> ' . Html::encode(Yii::t('billing/invoice/labels', 'invoice_tabs.invoice_row')),
             'content' => $this->render('_form_invoice_row', [
                 'dataProvider' => new \yii\data\ArrayDataProvider(['allModels' => $model->invoiceRows]),
                 'form' => $form
@@ -159,21 +159,21 @@ use kartik\builder\Form;
         ],
         /*
         [
-            'label' => '<i class="glyphicon glyphicon-book"></i> ' . Html::encode(Yii::t('invoice/invoice/labels', 'invoice_tabs.invoice_row')),
+            'label' => '<i class="glyphicon glyphicon-book"></i> ' . Html::encode(Yii::t('billing/invoice/labels', 'invoice_tabs.invoice_row')),
             'content' => $this->render('_form_required_payment', [
                 'dataProvider' => new \yii\data\ArrayDataProvider(['allModels' => $model->invoiceRows]),
                 'form' => $form
             ])
         ],
         [
-            'label' => '<i class="glyphicon glyphicon-book"></i> ' . Html::encode(Yii::t('invoice/invoice/labels', 'invoice_tabs.invoice_row')),
+            'label' => '<i class="glyphicon glyphicon-book"></i> ' . Html::encode(Yii::t('billing/invoice/labels', 'invoice_tabs.invoice_row')),
             'content' => $this->render('_form_received_payment', [
                 'dataProvider' => new \yii\data\ArrayDataProvider(['allModels' => $model->invoiceRows]),
                 'form' => $form
             ])
         ],
         [
-            'label' => '<i class="glyphicon glyphicon-book"></i> ' . Html::encode(Yii::t('invoice/invoice/labels', 'invoice_tabs.invoice_row')),
+            'label' => '<i class="glyphicon glyphicon-book"></i> ' . Html::encode(Yii::t('billing/invoice/labels', 'invoice_tabs.invoice_row')),
             'content' => $this->render('_form_attached', [
                 'dataProvider' => new \yii\data\ArrayDataProvider(['allModels' => $model->invoiceRows]),
                 'form' => $form

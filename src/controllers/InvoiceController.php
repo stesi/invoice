@@ -1,6 +1,6 @@
 <?php
 
-namespace stesi\invoice\controllers;
+namespace stesi\billing\controllers;
 
 use stesi\core\actions\AddFormInputAction;
 use stesi\core\actions\CreateAction;
@@ -10,13 +10,13 @@ use stesi\core\actions\ListAction;
 use stesi\core\actions\UpdateAction;
 use stesi\core\actions\ViewAction;
 use stesi\core\controllers\StesiController;
-use stesi\invoice\models\Invoice;
-use stesi\invoice\models\grid\InvoiceGrid;
+use stesi\billing\models\Invoice;
+use stesi\billing\models\grid\InvoiceGrid;
 
 /**
  * InvoiceController implements the CRUD actions for Invoice model.
  */
-class _InvoiceController extends StesiController
+class InvoiceController extends StesiController
 {
     public function actions()
     {
@@ -44,7 +44,7 @@ class _InvoiceController extends StesiController
                 'class' => ViewAction::className(),
                 'modelClass' => Invoice::className(),
             ],
-            'invoice-list' => [
+            'billing-list' => [
                 'class' => ListAction::className(),
                 'modelClass' => Invoice::className(),
             ]

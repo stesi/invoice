@@ -1,6 +1,6 @@
 <?php
 
-namespace stesi\invoice\models\base;
+namespace stesi\billing\models\base;
 use stesi\core\models\base\StesiModel;
 
 use Yii;

@@ -1,9 +1,9 @@
 <?php
 
-namespace stesi\invoice\models;
+namespace stesi\billing\models;
 
 use Yii;
-use \stesi\invoice\models\base\InvoiceRow as BaseInvoiceRow;
+use \stesi\billing\models\base\InvoiceRow as BaseInvoiceRow;
 
 /**
  * This is the model class for table "inv_invoice_row".
@@ -27,20 +27,20 @@ class InvoiceRow extends BaseInvoiceRow
     public function attributeLabels()
     {
         return [
-            'id' => Yii::t('invoice/invoice_row/labels', 'invoice_row_labels.id'),
-            'invoice_id' => Yii::t('invoice/invoice_row/labels', 'invoice_row_labels.invoice_id'),
-            'product_id' => Yii::t('invoice/invoice_row/labels', 'invoice_row_labels.product_id'),
-            'description' => Yii::t('invoice/invoice_row/labels', 'invoice_row_labels.description'),
-            'quantity' => Yii::t('invoice/invoice_row/labels', 'invoice_row_labels.quantity'),
-            'measurement_unit' => Yii::t('invoice/invoice_row/labels', 'invoice_row_labels.measurement_unit'),
-            'unit_price' => Yii::t('invoice/invoice_row/labels', 'invoice_row_labels.unit_price'),
-            'vat_id' => Yii::t('invoice/invoice_row/labels', 'invoice_row_labels.vat_id'),
-            'vat_value' => Yii::t('invoice/invoice_row/labels', 'invoice_row_labels.vat_value'),
-            'taxable' => Yii::t('invoice/invoice_row/labels', 'invoice_row_labels.taxable'),
-            'discount' => Yii::t('invoice/invoice_row/labels', 'invoice_row_labels.discount'),
-            'subtotal_row' => Yii::t('invoice/invoice_row/labels', 'invoice_row_labels.subtotal_row'),
-            'tax' => Yii::t('invoice/invoice_row/labels', 'invoice_row_labels.tax'),
-            'total_row' => Yii::t('invoice/invoice_row/labels', 'invoice_row_labels.total_row'),
+            'id' => Yii::t('billing/invoice_row/labels', 'invoice_row_labels.id'),
+            'invoice_id' => Yii::t('billing/invoice_row/labels', 'invoice_row_labels.invoice_id'),
+            'product_id' => Yii::t('billing/invoice_row/labels', 'invoice_row_labels.product_id'),
+            'description' => Yii::t('billing/invoice_row/labels', 'invoice_row_labels.description'),
+            'quantity' => Yii::t('billing/invoice_row/labels', 'invoice_row_labels.quantity'),
+            'measurement_unit' => Yii::t('billing/invoice_row/labels', 'invoice_row_labels.measurement_unit'),
+            'unit_price' => Yii::t('billing/invoice_row/labels', 'invoice_row_labels.unit_price'),
+            'vat_id' => Yii::t('billing/invoice_row/labels', 'invoice_row_labels.vat_id'),
+            'vat_value' => Yii::t('billing/invoice_row/labels', 'invoice_row_labels.vat_value'),
+            'taxable' => Yii::t('billing/invoice_row/labels', 'invoice_row_labels.taxable'),
+            'discount' => Yii::t('billing/invoice_row/labels', 'invoice_row_labels.discount'),
+            'subtotal_row' => Yii::t('billing/invoice_row/labels', 'invoice_row_labels.subtotal_row'),
+            'tax' => Yii::t('billing/invoice_row/labels', 'invoice_row_labels.tax'),
+            'total_row' => Yii::t('billing/invoice_row/labels', 'invoice_row_labels.total_row'),
         ];
     }
 
@@ -50,20 +50,20 @@ class InvoiceRow extends BaseInvoiceRow
     public function attributeHints()
     {
         return [
-            'id' => Yii::t('invoice/invoice_row/hints', 'invoice_row_hints.id'),
-            'invoice_id' => Yii::t('invoice/invoice_row/hints', 'invoice_row_hints.invoice_id'),
-            'product_id' => Yii::t('invoice/invoice_row/hints', 'invoice_row_hints.product_id'),
-            'description' => Yii::t('invoice/invoice_row/hints', 'invoice_row_hints.description'),
-            'quantity' => Yii::t('invoice/invoice_row/hints', 'invoice_row_hints.quantity'),
-            'measurement_unit' => Yii::t('invoice/invoice_row/hints', 'invoice_row_hints.measurement_unit'),
-            'unit_price' => Yii::t('invoice/invoice_row/hints', 'invoice_row_hints.unit_price'),
-            'vat_id' => Yii::t('invoice/invoice_row/hints', 'invoice_row_hints.vat_id'),
-            'vat_value' => Yii::t('invoice/invoice_row/hints', 'invoice_row_hints.vat_value'),
-            'taxable' => Yii::t('invoice/invoice_row/hints', 'invoice_row_hints.taxable'),
-            'discount' => Yii::t('invoice/invoice_row/hints', 'invoice_row_hints.discount'),
-            'subtotal_row' => Yii::t('invoice/invoice_row/hints', 'invoice_row_hints.subtotal_row'),
-            'tax' => Yii::t('invoice/invoice_row/hints', 'invoice_row_hints.tax'),
-            'total_row' => Yii::t('invoice/invoice_row/hints', 'invoice_row_hints.total_row'),
+            'id' => Yii::t('billing/invoice_row/hints', 'invoice_row_hints.id'),
+            'invoice_id' => Yii::t('billing/invoice_row/hints', 'invoice_row_hints.invoice_id'),
+            'product_id' => Yii::t('billing/invoice_row/hints', 'invoice_row_hints.product_id'),
+            'description' => Yii::t('billing/invoice_row/hints', 'invoice_row_hints.description'),
+            'quantity' => Yii::t('billing/invoice_row/hints', 'invoice_row_hints.quantity'),
+            'measurement_unit' => Yii::t('billing/invoice_row/hints', 'invoice_row_hints.measurement_unit'),
+            'unit_price' => Yii::t('billing/invoice_row/hints', 'invoice_row_hints.unit_price'),
+            'vat_id' => Yii::t('billing/invoice_row/hints', 'invoice_row_hints.vat_id'),
+            'vat_value' => Yii::t('billing/invoice_row/hints', 'invoice_row_hints.vat_value'),
+            'taxable' => Yii::t('billing/invoice_row/hints', 'invoice_row_hints.taxable'),
+            'discount' => Yii::t('billing/invoice_row/hints', 'invoice_row_hints.discount'),
+            'subtotal_row' => Yii::t('billing/invoice_row/hints', 'invoice_row_hints.subtotal_row'),
+            'tax' => Yii::t('billing/invoice_row/hints', 'invoice_row_hints.tax'),
+            'total_row' => Yii::t('billing/invoice_row/hints', 'invoice_row_hints.total_row'),
         ];
     }
 
@@ -84,6 +84,8 @@ class InvoiceRow extends BaseInvoiceRow
 
         $this->total_row=$this->tax+$this->subtotal_row;
 
+        //aggiorno i conteggi sulla fattura padre
+        $this->invoice->updateCount();
         return parent::beforeSave($insert); // TODO: Change the autogenerated stub
     }
 

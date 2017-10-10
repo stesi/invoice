@@ -1,4 +1,3 @@
-# invoice
-Invoice manager for STeSI.erp
-...
+# billing
+Billing manager for STeSI.erp
 
