@@ -1,6 +1,6 @@
 <?php
 
-namespace stesi\invoice\models;
+namespace stesi\billing\models;
 
 use \app\modules\gles\models\Organization as GlesOrganization;
 use app\services\StesiTools;

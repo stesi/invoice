@@ -1,9 +1,9 @@
 {
-    "name": "stesi/invoice",
+    "name": "stesi/billing",
     "description": "STeSI Invoice module for STeSI.erp",
     "type": "package",
     "minimum-stability": "dev",
-    "keywords": ["yii2","extension","invoice"],
+    "keywords": ["yii2","extension","billing"],
     "authors": [
         {
             "name": "STeSI",
@@ -15,7 +15,7 @@
     },
     "autoload": {
         "psr-4": {
-            "stesi\\invoice\\": "src/"
+            "stesi\\billing\\": "src/"
         }
     }
 }

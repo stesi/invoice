@@ -1,12 +1,12 @@
 <?php
 
-namespace stesi\invoice\models\grid;
+namespace stesi\billing\models\grid;
 
 use Yii;
 use yii\data\ActiveDataProvider;
 
 /**
- * InvoiceGrid represents the model behind the search form about `stesi\invoice\models\Invoice`.
+ * InvoiceGrid represents the model behind the search form about `stesi\billing\models\Invoice`.
  */
 class InvoiceGrid extends yii\db\ActiveRecord
 {

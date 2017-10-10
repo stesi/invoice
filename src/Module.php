@@ -1,19 +1,19 @@
 <?php
 
-namespace stesi\invoice;
+namespace stesi\billing;
 
 use stesi\core\events\MenuEvent;
 use Yii;
 
 /**
- * invoice module definition class
+ * billing module definition class
  */
 class Module extends \yii\base\Module
 {
     /**
      * @inheritdoc
      */
-    public $controllerNamespace = 'stesi\invoice\controllers';
+    public $controllerNamespace = 'stesi\billing\controllers';
 
     /**
      * @inheritdoc
@@ -23,7 +23,7 @@ class Module extends \yii\base\Module
         parent::init();
 
         if (Yii::$app instanceof \yii\console\Application) {
-            $this->controllerNamespace = 'stesi\invoice\commands';
+            $this->controllerNamespace = 'stesi\billing\commands';
         }
         Yii::$app->view->on(MenuEvent::EVENT_BEFORE_RENDER, [$this, 'addMenuItems']);
     }

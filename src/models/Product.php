@@ -1,6 +1,6 @@
 <?php
 
-namespace stesi\invoice\models;
+namespace stesi\billing\models;
 
 use app\modules\gles\models\Product as GlesProduct;
 

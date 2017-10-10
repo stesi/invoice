@@ -3,7 +3,7 @@
 use yii\helpers\Html;
 
 /* @var $this yii\web\View */
-/* @var $model stesi\invoice\models\PaymentTerms */
+/* @var $model stesi\billing\models\PaymentTerms */
 
 $this->title = 'Update Payment Terms: ' . $model->id;
 $this->params['breadcrumbs'][] = ['label' => Yii::t('app/breadcrumbs', 'payment_terms_update_breadcrumbs.Index'), 'url' => ['index']];

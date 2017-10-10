@@ -2,22 +2,23 @@
 
 namespace stesi\invoice\controllers;
 
+use stesi\billing\models\grid\InvoiceGrid;
+use stesi\billing\models\Invoice;
 use stesi\core\actions\CreateAction;
 use stesi\core\actions\IndexAction;
-use stesi\invoice\models\grid\InvoiceGrid;
-use stesi\core\controllers\StesiController;
 use stesi\core\actions\AddFormInputAction;
 use stesi\core\actions\DeleteAction;
 use stesi\core\actions\ListAction;
 use stesi\core\actions\UpdateAction;
 use stesi\core\actions\ViewAction;
-use stesi\invoice\models\Invoice;
+
+use yii\web\Controller;
 
 
 /**
- * Default controller for the `invoice` module
+ * Default controller for the `billing` module
  */
-class DefaultController extends StesiController
+class DefaultController extends Controller
 {
     /**
      * @return array
@@ -48,7 +49,7 @@ class DefaultController extends StesiController
                 'class' => ViewAction::className(),
                 'modelClass' => Invoice::className(),
             ],
-            'invoice-list' => [
+            'billing-list' => [
                 'class' => ListAction::className(),
                 'modelClass' => Invoice::className(),
             ]

@@ -1,6 +1,6 @@
 <?php
 
-namespace stesi\invoice\models;
+namespace stesi\billing\models;
 
 /**
  * This is the ActiveQuery class for [[InvoiceRow]].
