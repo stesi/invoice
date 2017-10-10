@@ -1,6 +1,6 @@
 <?php
 
-namespace stesi\core\models\base\StesiModel\controllers;
+namespace stesi\billing\controllers;
 
 use \app\modules\gles\controllers\OrganizationController as GlesOrganizationController;
 

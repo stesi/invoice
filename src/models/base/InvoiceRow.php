@@ -1,9 +1,9 @@
 <?php
 
-namespace stesi\core\models\base\StesiModel\models\base;
+namespace stesi\billing\models\base;
 use stesi\core\models\base\StesiModel;
 
-use stesi\core\models\base\StesiModel\models\Product;
+use stesi\billing\models\Product;
 use Yii;
 
 /**
@@ -23,9 +23,9 @@ use Yii;
  * @property double $subtotal_row
  * @property double $tax
  * @property double $total_row
- * @property \stesi\core\models\base\StesiModel\models\Invoice $billing
- * @property \stesi\core\models\base\StesiModel\models\Product $product
- * @property \stesi\core\models\base\StesiModel\models\VatCode $vat
+ * @property \stesi\billing\models\Invoice $invoice
+ * @property \stesi\billing\models\Product $product
+ * @property \stesi\billing\models\VatCode $vat
  */
 class InvoiceRow extends StesiModel
 {
@@ -60,7 +60,7 @@ class InvoiceRow extends StesiModel
      */
     public function getInvoice()
     {
-        return $this->hasOne(\stesi\core\models\base\StesiModel\models\Invoice::className(), ['id' => 'invoice_id']);
+        return $this->hasOne(\stesi\billing\models\Invoice::className(), ['id' => 'invoice_id']);
     }
         
     /**
@@ -68,7 +68,7 @@ class InvoiceRow extends StesiModel
      */
     public function getProduct()
     {
-        return $this->hasOne(\stesi\core\models\base\StesiModel\models\Product::className(), ['id' => 'product_id']);
+        return $this->hasOne(\stesi\billing\models\Product::className(), ['id' => 'product_id']);
     }
         
     /**
@@ -76,15 +76,15 @@ class InvoiceRow extends StesiModel
      */
     public function getVat()
     {
-        return $this->hasOne(\stesi\core\models\base\StesiModel\models\VatCode::className(), ['id' => 'vat_id']);
+        return $this->hasOne(\stesi\billing\models\VatCode::className(), ['id' => 'vat_id']);
     }
 
     /**
-     * @return \stesi\core\models\base\StesiModel\models\InvoiceRowQuery
+     * @return \stesi\billing\models\InvoiceRowQuery
      */
     public static function find()
     {
-        return new \stesi\core\models\base\StesiModel\models\InvoiceRowQuery(get_called_class());
+        return new \stesi\billing\models\InvoiceRowQuery(get_called_class());
     }
     
 }

@@ -4,7 +4,7 @@ $this->title = 'Invoices';
 $this->params['breadcrumbs'][] = ['label' => Yii::t('app/breadcrumbs', 'invoice_index_breadcrumbs.Index'), 'url' => ['index']];
 
 $this->params['buttons'] = [
-    ['label' => Yii::t('billing/billing/buttons', 'invoice_buttons.index.create_invoice'), 'url' => ['create'], 'linkOptions' => ["class" => "showModalButton btn btn-sm btn-default", "title" => Yii::t('billing/billing/titles', 'invoice_titles.create_invoice')],],
+    ['label' => Yii::t('billing/invoice/buttons', 'invoice_buttons.index.create_invoice'), 'url' => ['create'], 'linkOptions' => ["class" => "showModalButton btn btn-sm btn-default", "title" => Yii::t('billing/invoice/titles', 'invoice_titles.create_invoice')],],
 ];
 
 ?>
@@ -18,17 +18,17 @@ $this->params['buttons'] = [
         'id',
         [
             'attribute' => 'organization_from_name',
-            'label' => Yii::t('billing/billing/labels', 'invoice_index.organization_from_name')
+            'label' => Yii::t('billing/invoice/labels', 'invoice_index.organization_from_name')
         ],
         [
             'attribute' => 'organization_to_name',
-            'label' => Yii::t('billing/billing/labels', 'invoice_index.organization_to_name')
+            'label' => Yii::t('billing/invoice/labels', 'invoice_index.organization_to_name')
         ],
         'status',
         'invoice_type',
         [
             'attribute' => 'payment_terms_name',
-            'label' => Yii::t('billing/billing/labels', 'invoice_index.payment_terms_name')
+            'label' => Yii::t('billing/invoice/labels', 'invoice_index.payment_terms_name')
         ],
         'preamble',
         'number',

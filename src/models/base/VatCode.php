@@ -1,9 +1,9 @@
 <?php
 
-namespace stesi\core\models\base\StesiModel\models\base;
+namespace stesi\billing\models\base;
 use stesi\core\models\base\StesiModel;
 
-use stesi\core\models\base\StesiModel\models\VatCodeQuery;
+use stesi\billing\models\VatCodeQuery;
 use Yii;
 
 /**

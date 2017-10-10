@@ -1,6 +1,6 @@
 <?php
 
-namespace stesi\core\models\base\StesiModel\models\grid;
+namespace stesi\billing\models\grid;
 
 use Yii;
 use yii\data\ActiveDataProvider;

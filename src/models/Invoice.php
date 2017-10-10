@@ -1,17 +1,17 @@
 <?php
 
-namespace stesi\core\models\base\StesiModel\models;
+namespace stesi\billing\models;
 
 use stesi\core\behaviors\UploadImageBehavior;
 use nhkey\arh\ActiveRecordHistoryBehavior;
 use Yii;
-use \stesi\core\models\base\StesiModel\models\base\Invoice as BaseInvoice;
+use \stesi\billing\models\base\Invoice as BaseInvoice;
 use yii\base\ErrorException;
 
 /**
  * This is the model class for table "inv_invoice".
  *
- * @property \stesi\core\models\base\StesiModel\models\InvoiceRow[] $invoiceRows
+ * @property \stesi\billing\models\InvoiceRow[] $invoiceRows
  */
 class Invoice extends BaseInvoice
 {
@@ -35,24 +35,24 @@ class Invoice extends BaseInvoice
     public function attributeLabels()
     {
         return [
-            'id' => Yii::t('billing/billing/labels', 'invoice_labels.id'),
-            'organization_from_id' => Yii::t('billing/billing/labels', 'invoice_labels.organization_from_id'),
-            'organization_to_id' => Yii::t('billing/billing/labels', 'invoice_labels.organization_to_id'),
-            'status' => Yii::t('billing/billing/labels', 'invoice_labels.status'),
-            'invoice_type' => Yii::t('billing/billing/labels', 'invoice_labels.invoice_type'),
-            'preamble' => Yii::t('billing/billing/labels', 'invoice_labels.preamble'),
-            'number' => Yii::t('billing/billing/labels', 'invoice_labels.number'),
-            'object' => Yii::t('billing/billing/labels', 'invoice_labels.object'),
-            'year' => Yii::t('billing/billing/labels', 'invoice_labels.year'),
-            'invoice_date' => Yii::t('billing/billing/labels', 'invoice_labels.invoice_date'),
-            'competence_date' => Yii::t('billing/billing/labels', 'invoice_labels.competence_date'),
-            'payment_terms_id' => Yii::t('billing/billing/labels', 'invoice_labels.payment_terms_id'),
-            'note' => Yii::t('billing/billing/labels', 'invoice_labels.note'),
-            'taxable' => Yii::t('billing/billing/labels', 'invoice_labels.taxable'),
-            'discount' => Yii::t('billing/billing/labels', 'invoice_labels.discount'),
-            'subtotal' => Yii::t('billing/billing/labels', 'invoice_labels.subtotal'),
-            'tax' => Yii::t('billing/billing/labels', 'invoice_labels.tax'),
-            'total' => Yii::t('billing/billing/labels', 'invoice_labels.total'),
+            'id' => Yii::t('billing/invoice/labels', 'invoice_labels.id'),
+            'organization_from_id' => Yii::t('billing/invoice/labels', 'invoice_labels.organization_from_id'),
+            'organization_to_id' => Yii::t('billing/invoice/labels', 'invoice_labels.organization_to_id'),
+            'status' => Yii::t('billing/invoice/labels', 'invoice_labels.status'),
+            'invoice_type' => Yii::t('billing/invoice/labels', 'invoice_labels.invoice_type'),
+            'preamble' => Yii::t('billing/invoice/labels', 'invoice_labels.preamble'),
+            'number' => Yii::t('billing/invoice/labels', 'invoice_labels.number'),
+            'object' => Yii::t('billing/invoice/labels', 'invoice_labels.object'),
+            'year' => Yii::t('billing/invoice/labels', 'invoice_labels.year'),
+            'invoice_date' => Yii::t('billing/invoice/labels', 'invoice_labels.invoice_date'),
+            'competence_date' => Yii::t('billing/invoice/labels', 'invoice_labels.competence_date'),
+            'payment_terms_id' => Yii::t('billing/invoice/labels', 'invoice_labels.payment_terms_id'),
+            'note' => Yii::t('billing/invoice/labels', 'invoice_labels.note'),
+            'taxable' => Yii::t('billing/invoice/labels', 'invoice_labels.taxable'),
+            'discount' => Yii::t('billing/invoice/labels', 'invoice_labels.discount'),
+            'subtotal' => Yii::t('billing/invoice/labels', 'invoice_labels.subtotal'),
+            'tax' => Yii::t('billing/invoice/labels', 'invoice_labels.tax'),
+            'total' => Yii::t('billing/invoice/labels', 'invoice_labels.total'),
         ];
     }
 
@@ -62,24 +62,24 @@ class Invoice extends BaseInvoice
     public function attributeHints()
     {
         return [
-            'id' => Yii::t('billing/billing/hints', 'invoice_hints.id'),
-            'organization_from_id' => Yii::t('billing/billing/hints', 'invoice_hints.organization_from_id'),
-            'organization_to_id' => Yii::t('billing/billing/hints', 'invoice_hints.organization_to_id'),
-            'status' => Yii::t('billing/billing/hints', 'invoice_hints.status'),
-            'invoice_type' => Yii::t('billing/billing/hints', 'invoice_hints.invoice_type'),
-            'preamble' => Yii::t('billing/billing/hints', 'invoice_hints.preamble'),
-            'number' => Yii::t('billing/billing/hints', 'invoice_hints.number'),
-            'object' => Yii::t('billing/billing/hints', 'invoice_hints.object'),
-            'year' => Yii::t('billing/billing/hints', 'invoice_hints.year'),
-            'invoice_date' => Yii::t('billing/billing/hints', 'invoice_hints.invoice_date'),
-            'competence_date' => Yii::t('billing/billing/hints', 'invoice_hints.competence_date'),
-            'payment_terms_id' => Yii::t('billing/billing/hints', 'invoice_hints.payment_terms_id'),
-            'note' => Yii::t('billing/billing/hints', 'invoice_hints.note'),
-            'taxable' => Yii::t('billing/billing/hints', 'invoice_hints.taxable'),
-            'discount' => Yii::t('billing/billing/hints', 'invoice_hints.discount'),
-            'subtotal' => Yii::t('billing/billing/hints', 'invoice_hints.subtotal'),
-            'tax' => Yii::t('billing/billing/hints', 'invoice_hints.tax'),
-            'total' => Yii::t('billing/billing/hints', 'invoice_hints.total'),
+            'id' => Yii::t('billing/invoice/hints', 'invoice_hints.id'),
+            'organization_from_id' => Yii::t('billing/invoice/hints', 'invoice_hints.organization_from_id'),
+            'organization_to_id' => Yii::t('billing/invoice/hints', 'invoice_hints.organization_to_id'),
+            'status' => Yii::t('billing/invoice/hints', 'invoice_hints.status'),
+            'invoice_type' => Yii::t('billing/invoice/hints', 'invoice_hints.invoice_type'),
+            'preamble' => Yii::t('billing/invoice/hints', 'invoice_hints.preamble'),
+            'number' => Yii::t('billing/invoice/hints', 'invoice_hints.number'),
+            'object' => Yii::t('billing/invoice/hints', 'invoice_hints.object'),
+            'year' => Yii::t('billing/invoice/hints', 'invoice_hints.year'),
+            'invoice_date' => Yii::t('billing/invoice/hints', 'invoice_hints.invoice_date'),
+            'competence_date' => Yii::t('billing/invoice/hints', 'invoice_hints.competence_date'),
+            'payment_terms_id' => Yii::t('billing/invoice/hints', 'invoice_hints.payment_terms_id'),
+            'note' => Yii::t('billing/invoice/hints', 'invoice_hints.note'),
+            'taxable' => Yii::t('billing/invoice/hints', 'invoice_hints.taxable'),
+            'discount' => Yii::t('billing/invoice/hints', 'invoice_hints.discount'),
+            'subtotal' => Yii::t('billing/invoice/hints', 'invoice_hints.subtotal'),
+            'tax' => Yii::t('billing/invoice/hints', 'invoice_hints.tax'),
+            'total' => Yii::t('billing/invoice/hints', 'invoice_hints.total'),
         ];
     }
 
@@ -88,19 +88,24 @@ class Invoice extends BaseInvoice
      */
     public function getInvoiceRows()
     {
-        return $this->hasMany(\stesi\core\models\base\StesiModel\models\InvoiceRow::className(), ['invoice_id' => 'id']);
+        return $this->hasMany(\stesi\billing\models\InvoiceRow::className(), ['invoice_id' => 'id']);
     }
 
     public function beforeSave($insert)
     {
         $this->organization_from_id = (new Organization())::find()->andWhere(["=", "owner", 1])->one()->id;
-        //$this->taxable=$this->countTotalTaxable();
-        $this->tax=$this->countTotalTax();
-        $this->subtotal=$this->countSubTotal();
-        //$this->discount=$this->countTotalDiscount();
-        $this->total=$this->countTotal();
-
         return parent::beforeSave($insert); // TODO: Change the autogenerated stub
+    }
+
+    public function updateCount()
+    {
+        $this->taxable = $this->countTotalTaxable();
+        $this->discount = $this->countTotalDiscount();
+        $this->subtotal = $this->countSubTotal();
+        $this->tax = $this->countTotalTax();
+        $this->total = $this->countTotal();
+
+        return $this->save();
     }
 
     public function getPhoneOrganizationFrom()
@@ -143,54 +148,60 @@ class Invoice extends BaseInvoice
         return $fullName;
     }
 
-    public function countTotalTaxable(){
+    public function countTotalTaxable()
+    {
         //totale imponibile
-        $rows=$this->invoiceRows;
-        $tot_taxable=0;
-        foreach ($rows as $row){
-            $tot_taxable+=$row->taxable;
+        $rows = $this->invoiceRows;
+        $tot_taxable = 0;
+        foreach ($rows as $row) {
+            $tot_taxable += $row->taxable;
         }
         return $tot_taxable;
     }
-    public function countTotalTax(){
-        //totale iva
-        $rows=$this->invoiceRows;
-        $tot_tax=0;
-        foreach ($rows as $row){
-            $tot_tax+=$row->tax;
-        }
-        return $tot_tax;
-    }
-    public function countSubTotal(){
-        //totale ivato
-        $rows=$this->invoiceRows;
-        $subtot=0;
-        foreach ($rows as $row){
-            $subtot+=$row->taxable+$row->tax;
-        }
-        return $subtot;
-    }
-    public function countTotalDiscount(){
+
+    public function countTotalDiscount()
+    {
         //totale sconto
-        $rows=$this->invoiceRows;
-        $tot_discount=0;
-        foreach ($rows as $row){
-            $total_row=$row->tax+$row->taxable;
-            $discount=!isset($row->discount)?0:$row->discount;
-            $tot_discount+=($total_row*$discount/100);
+        $rows = $this->invoiceRows;
+        $tot_discount = 0;
+        foreach ($rows as $row) {
+            $tot_discount += ($row->taxable * $row->discount / 100);
         }
         return $tot_discount;
     }
-    public function countTotal(){
+
+    public function countSubTotal()
+    {
+        //totale ivato
+        $rows = $this->invoiceRows;
+        $subtot = 0;
+        foreach ($rows as $row) {
+            $subtot += $row->subtotal_row;
+        }
+        return $subtot;
+    }
+
+    public function countTotalTax()
+    {
+        //totale iva
+        $rows = $this->invoiceRows;
+        $tot_tax = 0;
+        foreach ($rows as $row) {
+            $tot_tax += $row->tax;
+        }
+        return $tot_tax;
+    }
+
+    public function countTotal()
+    {
         //totale scontato
-        $rows=$this->invoiceRows;
-        $total=0;
-        foreach ($rows as $row){
-            $total+=$row->total_row;
+        $rows = $this->invoiceRows;
+        $total = 0;
+        foreach ($rows as $row) {
+            $total += $row->total_row;
         }
         return $total;
     }
-
 
 
 }

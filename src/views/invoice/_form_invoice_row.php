@@ -7,9 +7,9 @@ use kartik\form\ActiveForm;
 
 use kartik\builder\TabularForm;
 use kartik\widgets\Select2;
-use stesi\core\models\base\StesiModel\models\InvoiceRow;
-use stesi\core\models\base\StesiModel\models\Product;
-use stesi\core\models\base\StesiModel\models\VatCode;
+use stesi\billing\models\InvoiceRow;
+use stesi\billing\models\Product;
+use stesi\billing\models\VatCode;
 use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
 
@@ -17,10 +17,10 @@ use yii\helpers\Url;
 use yii\web\JsExpression;
 
 $subformName = 'invoice_row';
-$subformId = 'tabular-form-billing-billing-row-wrapper';
+$subformId = 'tabular-form-billing-invoice-row-wrapper';
 $modelName = InvoiceRow::class;
-$buttonAddMessage = Yii::t('billing/billing/buttons', 'invoice_buttons.subform.add_invoice_row');
-$parentFormId = 'billing-form';
+$buttonAddMessage = Yii::t('billing/invoice/buttons', 'invoice_buttons.subform.add_invoice_row');
+$parentFormId = 'invoice-form';
 
 if (!isset($form)) {
     $form = ActiveForm::begin();
@@ -89,9 +89,15 @@ if (!isset($form)) {
                 'columnOptions' => [
                     'width' => '100px'
                 ],
-                'options' => ['class' => 'invoice_row_discount'
+                'options' => [
+                    'class' => 'invoice_row_discount',
                 ],
-                //  <i class="fa fa-calendar"></i>
+                'fieldConfig' => [
+                    'addon' => [
+                        'append' => ['content' => '%', 'options'=>['style' => 'font-family: Monaco, Consolas, monospace;']],
+                    ]
+                ],
+
             ],
             'subtotal_row' => [
                 'type' => TabularForm::INPUT_TEXT,
@@ -103,11 +109,10 @@ if (!isset($form)) {
             'vat_id' => [
                 'type' => TabularForm::INPUT_WIDGET,
                 'widgetClass' => Select2::class,
-                //'value'=> ArrayHelper::map(VatCode::find()->getVatValueWithCode()->where(['id' => 6])->one(), 'id', 'code'),
                 'options' => function ($model, $key) {
                     $inputId = 'invoicerow_vat_id';
-                    $initValueText = isset($model->vat_id) ? ArrayHelper::map(VatCode::find()->getVatValueWithCode()->where(['id' => $model['vat_id']])->all(), 'id', 'code') : ArrayHelper::map(VatCode::find()->getVatValueWithCode()->where(['id' => '6'])->all(), 'id', 'code');
-
+                    if (!isset($model['vat_id'])) $model['vat_id'] = 6; // default vat_id
+                    $initValueText = ArrayHelper::map(VatCode::find()->getVatValueWithCode()->where(['id' => $model['vat_id']])->all(), 'id', 'code');
                     return [
                         'initValueText' => $initValueText,
                         'class' => 'invoice_row_vat_id',
@@ -118,22 +123,6 @@ if (!isset($form)) {
 
                 },
             ],
-            /*  'vat_value' => [
-                  'type' => TabularForm::INPUT_WIDGET,
-                  'widgetClass' => DepDrop::className(),
-                  'options' => [
-                      'type' => DepDrop::TYPE_SELECT2,
-                      'pluginOptions' => [
-                          'depends' => ['invoicerow_vat_id'],
-                          'initialize' => true,
-                          'url' => Url::to(['vat-code/get-vat-value-by-id']),
-                      ],
-                      'options' => ['id' => 'invoicerow_vat_value'],
-                      'select2Options' => ['pluginOptions' => [
-                          'allowClear' => true]],
-                  ],
-              ],*/
-
             'del' => [
                 'type' => 'raw',
                 'label' => '',
@@ -144,34 +133,11 @@ if (!isset($form)) {
             ],
         ],
         'gridSettings' => require(__DIR__ . '/../../../../../config/modules/gridSettingsOfTabularInput.php')
-        /*[
-        'panel' => [
-            'heading' => false,
-            'type' => GridView::TYPE_DEFAULT,
-            'before' => false,
-            'footer' => false,
-            'after' => Html::button('<i class="glyphicon glyphicon-plus"></i>' . Yii::t('app', $buttonAddMessage), [
-                'type' => 'button',
-                'class' => 'btn btn-success kv-batch-create btn-add-form-input',
-                'data' => [
-                    'url' => Url::to(['add-form-input', 'subFormName' => $subformName, 'modelName' => $modelName]),
-                    'wrapper' => '#'.$subformId,
-                ],
-            ]),
-        ]
-    ]*/
+
     ]);
     echo "    </div>\n\n";
 
     require(__DIR__ . '/../../../../../views/layouts/appendClientValidationSubForm.php');
 
-    /*
-        if (isset($appendClientValidation) && $appendClientValidation) {
-            foreach ($form->attributes as $attribute) {
-                $attributes = Json::htmlEncode($attribute);
-                $this->registerJs("jQuery('#'.$parentFormId).yiiActiveForm('add', $attributes);");
-            }
-        }
-    */
 
     ?>

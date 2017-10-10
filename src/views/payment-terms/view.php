@@ -4,7 +4,7 @@ use yii\helpers\Html;
 use yii\widgets\DetailView;
 
 /* @var $this yii\web\View */
-/* @var $model stesi\core\models\base\StesiModel\models\PaymentTerms */
+/* @var $model stesi\billing\models\PaymentTerms */
 
 $this->title = $model->id;
 $this->params['breadcrumbs'][] = ['label' => Yii::t('app/breadcrumbs', 'payment_terms_view_breadcrumbs.Index'), 'url' => ["index"]];

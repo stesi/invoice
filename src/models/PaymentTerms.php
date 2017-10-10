@@ -1,8 +1,8 @@
 <?php
 
-namespace stesi\core\models\base\StesiModel\models;
+namespace stesi\billing\models;
 use Yii;
-use \stesi\core\models\base\StesiModel\models\base\PaymentTerms as BasePaymentTerms;
+use \stesi\billing\models\base\PaymentTerms as BasePaymentTerms;
 
 /**
  * This is the model class for table "inv_payment_terms".

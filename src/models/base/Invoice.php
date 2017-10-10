@@ -1,9 +1,9 @@
 <?php
 
-namespace stesi\core\models\base\StesiModel\models\base;
+namespace stesi\billing\models\base;
 use stesi\core\models\base\StesiModel;
 
-use stesi\core\models\base\StesiModel\models\Organization;
+use stesi\billing\models\Organization;
 use Yii;
 use yii\behaviors\TimestampBehavior;
 use yii\behaviors\BlameableBehavior;
@@ -34,9 +34,9 @@ use yii\behaviors\BlameableBehavior;
  * @property double $tax
  * @property double $total
  *
- * @property \stesi\core\models\base\StesiModel\models\Organization $organizationFrom
- * @property \stesi\core\models\base\StesiModel\models\Organization $organizationTo
- * @property \stesi\core\models\base\StesiModel\models\PaymentTerms $paymentTerms
+ * @property \stesi\billing\models\Organization $organizationFrom
+ * @property \stesi\billing\models\Organization $organizationTo
+ * @property \stesi\billing\models\PaymentTerms $paymentTerms
  */
 class Invoice extends StesiModel
 {
@@ -73,7 +73,7 @@ class Invoice extends StesiModel
      */
     public function getOrganizationFrom()
     {
-        return $this->hasOne(\stesi\core\models\base\StesiModel\models\Organization::className(), ['id' => 'organization_from_id']);
+        return $this->hasOne(\stesi\billing\models\Organization::className(), ['id' => 'organization_from_id']);
     }
         
     /**
@@ -81,7 +81,7 @@ class Invoice extends StesiModel
      */
     public function getOrganizationTo()
     {
-        return $this->hasOne(\stesi\core\models\base\StesiModel\models\Organization::className(), ['id' => 'organization_to_id']);
+        return $this->hasOne(\stesi\billing\models\Organization::className(), ['id' => 'organization_to_id']);
     }
         
     /**
@@ -89,7 +89,7 @@ class Invoice extends StesiModel
      */
     public function getPaymentTerms()
     {
-        return $this->hasOne(\stesi\core\models\base\StesiModel\models\PaymentTerms::className(), ['id' => 'payment_terms_id']);
+        return $this->hasOne(\stesi\billing\models\PaymentTerms::className(), ['id' => 'payment_terms_id']);
     }
     
 /**
@@ -115,11 +115,11 @@ class Invoice extends StesiModel
 
     /**
      * @inheritdoc
-     * @return \stesi\core\models\base\StesiModel\models\InvoiceQuery the active query used by this AR class.
+     * @return \stesi\billing\models\InvoiceQuery the active query used by this AR class.
      */
     public static function find()
     {
-        return new \stesi\core\models\base\StesiModel\models\InvoiceQuery(get_called_class());
+        return new \stesi\billing\models\InvoiceQuery(get_called_class());
     }
     
 }

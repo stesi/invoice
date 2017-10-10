@@ -1,9 +1,9 @@
 <?php
 
-namespace stesi\core\models\base\StesiModel\models;
+namespace stesi\billing\models;
 
 use Yii;
-use \stesi\core\models\base\StesiModel\models\base\VatCode as BaseVatCode;
+use \stesi\billing\models\base\VatCode as BaseVatCode;
 
 /**
  * This is the model class for table "inv_vat_code".
