@@ -1,8 +1,9 @@
 <?php
 
-namespace stesi\invoice\models\base;
-use app\models\base\StesiModel;
+namespace stesi\billing\models\base;
+use stesi\core\models\base\StesiModel;
 
+use stesi\billing\models\Organization;
 use Yii;
 use yii\behaviors\TimestampBehavior;
 use yii\behaviors\BlameableBehavior;
@@ -17,6 +18,7 @@ use yii\behaviors\BlameableBehavior;
  * @property string $invoice_type
  * @property string $preamble
  * @property integer $number
+ * @property string $object
  * @property string $year
  * @property string $invoice_date
  * @property string $competence_date
@@ -26,13 +28,15 @@ use yii\behaviors\BlameableBehavior;
  * @property integer $updated_by
  * @property integer $payment_terms_id
  * @property string $note
+ * @property double $taxable
+ * @property double $discount
  * @property double $subtotal
  * @property double $tax
  * @property double $total
  *
- * @property \stesi\invoice\models\Organization $organizationFrom
- * @property \stesi\invoice\models\Organization $organizationTo
- * @property \stesi\invoice\models\PaymentTerms $paymentTerms
+ * @property \stesi\billing\models\Organization $organizationFrom
+ * @property \stesi\billing\models\Organization $organizationTo
+ * @property \stesi\billing\models\PaymentTerms $paymentTerms
  */
 class Invoice extends StesiModel
 {
@@ -45,12 +49,14 @@ class Invoice extends StesiModel
             [['organization_from_id', 'organization_to_id', 'number', 'created_by', 'updated_by', 'payment_terms_id'], 'integer'],
             [['status', 'invoice_type', 'note'], 'string'],
             [['year', 'invoice_date', 'competence_date', 'created_at', 'updated_at'], 'safe'],
-            [['subtotal', 'tax', 'total'], 'number'],
+            [['taxable', 'discount', 'subtotal', 'tax', 'total'], 'number'],
             [['preamble'], 'string', 'max' => 20],
             [['preamble'], 'default'],
-            [['organization_from_id'], 'exist', 'skipOnError' => true, 'targetClass' => \stesi\invoice\models\Organization::className(), 'targetAttribute' => ['organization_from_id' => 'id']],
-            [['organization_to_id'], 'exist', 'skipOnError' => true, 'targetClass' => \stesi\invoice\models\Organization::className(), 'targetAttribute' => ['organization_to_id' => 'id']],
-            [['payment_terms_id'], 'exist', 'skipOnError' => true, 'targetClass' => \stesi\invoice\models\PaymentTerms::className(), 'targetAttribute' => ['payment_terms_id' => 'id']]
+            [['object'], 'string', 'max' => 120],
+            [['object'], 'default'],
+            [['organization_from_id'], 'exist', 'skipOnError' => true, 'targetClass' => Organization::className(), 'targetAttribute' => ['organization_from_id' => 'id']],
+            [['organization_to_id'], 'exist', 'skipOnError' => true, 'targetClass' => Organization::className(), 'targetAttribute' => ['organization_to_id' => 'id']],
+            [['payment_terms_id'], 'exist', 'skipOnError' => true, 'targetClass' => PaymentTerms::className(), 'targetAttribute' => ['payment_terms_id' => 'id']]
         ];
     }
     
@@ -67,7 +73,7 @@ class Invoice extends StesiModel
      */
     public function getOrganizationFrom()
     {
-        return $this->hasOne(\stesi\invoice\models\Organization::className(), ['id' => 'organization_from_id']);
+        return $this->hasOne(\stesi\billing\models\Organization::className(), ['id' => 'organization_from_id']);
     }
         
     /**
@@ -75,7 +81,7 @@ class Invoice extends StesiModel
      */
     public function getOrganizationTo()
     {
-        return $this->hasOne(\stesi\invoice\models\Organization::className(), ['id' => 'organization_to_id']);
+        return $this->hasOne(\stesi\billing\models\Organization::className(), ['id' => 'organization_to_id']);
     }
         
     /**
@@ -83,7 +89,7 @@ class Invoice extends StesiModel
      */
     public function getPaymentTerms()
     {
-        return $this->hasOne(\stesi\invoice\models\PaymentTerms::className(), ['id' => 'payment_terms_id']);
+        return $this->hasOne(\stesi\billing\models\PaymentTerms::className(), ['id' => 'payment_terms_id']);
     }
     
 /**
@@ -109,11 +115,11 @@ class Invoice extends StesiModel
 
     /**
      * @inheritdoc
-     * @return \stesi\invoice\models\InvoiceQuery the active query used by this AR class.
+     * @return \stesi\billing\models\InvoiceQuery the active query used by this AR class.
      */
     public static function find()
     {
-        return new \stesi\invoice\models\InvoiceQuery(get_called_class());
+        return new \stesi\billing\models\InvoiceQuery(get_called_class());
     }
     
 }

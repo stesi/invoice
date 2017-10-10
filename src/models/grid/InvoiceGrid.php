@@ -1,12 +1,12 @@
 <?php
 
-namespace stesi\invoice\models\grid;
+namespace stesi\billing\models\grid;
 
 use Yii;
 use yii\data\ActiveDataProvider;
 
 /**
- * InvoiceGrid represents the model behind the search form about `stesi\invoice\models\Invoice`.
+ * InvoiceGrid represents the model behind the search form about `stesi\billing\models\Invoice`.
  */
 class InvoiceGrid extends yii\db\ActiveRecord
 {
@@ -20,7 +20,8 @@ class InvoiceGrid extends yii\db\ActiveRecord
     {
         return [
             [['id', 'organization_from_id', 'organization_to_id', 'number', 'created_by', 'updated_by', 'payment_terms_id'], 'integer'],
-            [['status', 'invoice_type', 'preamble', 'year', 'invoice_date', 'competence_date', 'created_at', 'updated_at', 'note'], 'safe'],
+            [['status', 'invoice_type', 'preamble', 'year', 'invoice_date', 'competence_date', 'created_at', 'updated_at', 'note','organization_from_code',
+                'organization_from_name','organization_to_code','organization_to_name','payment_terms_name'], 'safe'],
             [['subtotal', 'tax', 'total'], 'number'],
             [['globalSearch'], 'safe'],
         ];
@@ -78,7 +79,12 @@ class InvoiceGrid extends yii\db\ActiveRecord
         $query->andFilterWhere(['like', 'status', $this->status])
             ->andFilterWhere(['like', 'invoice_type', $this->invoice_type])
             ->andFilterWhere(['like', 'preamble', $this->preamble])
-            ->andFilterWhere(['like', 'note', $this->note]);
+            ->andFilterWhere(['like', 'note', $this->note])
+            ->andFilterWhere(['like', 'organization_from_code', $this->organization_from_code])
+            ->andFilterWhere(['like', 'organization_from_name', $this->organization_from_name])
+            ->andFilterWhere(['like', 'organization_to_code', $this->organization_to_code])
+            ->andFilterWhere(['like', 'organization_to_name', $this->organization_to_name])
+            ->andFilterWhere(['like', 'payment_terms_name', $this->payment_terms_name]);
 
         //GlobalSearch
         $globalSearchField = array("or");

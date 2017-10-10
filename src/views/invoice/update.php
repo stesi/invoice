@@ -3,12 +3,14 @@
 use yii\helpers\Html;
 
 /* @var $this yii\web\View */
-/* @var $model stesi\invoice\models\Invoice */
+/* @var $model stesi\billing\models\Invoice */
 
-$this->title = 'Update Invoice: ' . $model->id;
-$this->params['breadcrumbs'][] = ['label' => 'Invoices', 'url' => ['index']];
-$this->params['breadcrumbs'][] = ['label' => $model->id, 'url' => ['view', 'id' => $model->id]];
-$this->params['breadcrumbs'][] = 'Update';
+$this->title = Yii::t('billing/invoice/titles', 'invoice_titles.update_invoice') . $model->id;
+
+$this->params['breadcrumbs'][] = ['label' => Yii::t('app/breadcrumbs', 'invoice_update_breadcrumbs.Index'), 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => Yii::t('app/breadcrumbs', 'update_breadcrumbs.Id').$model->id, 'url' => ['view', 'id' => $model->id]];
+$this->params['breadcrumbs'][] = Yii::t('app/breadcrumbs', 'update_breadcrumbs.Update');
+
 ?>
 <div class="invoice-update">
 

@@ -4,11 +4,11 @@ use yii\helpers\Html;
 use yii\widgets\DetailView;
 
 /* @var $this yii\web\View */
-/* @var $model stesi\invoice\models\PaymentTerms */
+/* @var $model stesi\billing\models\PaymentTerms */
 
 $this->title = $model->id;
-$this->params['breadcrumbs'][] = ['label' => 'Payment Terms', 'url' => ['index']];
-$this->params['breadcrumbs'][] = $this->title;
+$this->params['breadcrumbs'][] = ['label' => Yii::t('app/breadcrumbs', 'payment_terms_view_breadcrumbs.Index'), 'url' => ["index"]];
+$this->params['breadcrumbs'][] = ['label' => Yii::t('app/breadcrumbs', 'view_breadcrumbs.Id').$model->id, 'url' => ["view", "id" => $model->id]];
 
 $this->params['buttons'] = [
     ['label' => 'Update', 'url' => ['update', "id" => $model->id], 'linkOptions' => ["class" => "showModalButton btn btn-sm btn-primary", "title" => 'Update']],

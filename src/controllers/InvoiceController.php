@@ -1,21 +1,22 @@
 <?php
 
-namespace stesi\invoice\controllers;
+namespace stesi\billing\controllers;
 
-use app\actions\CreateAction;
-use app\actions\DeleteAction;
-use app\actions\IndexAction;
-use app\actions\ListAction;
-use app\actions\UpdateAction;
-use app\actions\ViewAction;
-use app\controllers\StesiController;
-use stesi\invoice\models\Invoice;
-use stesi\invoice\models\grid\InvoiceGrid;
+use stesi\core\actions\AddFormInputAction;
+use stesi\core\actions\CreateAction;
+use stesi\core\actions\DeleteAction;
+use stesi\core\actions\IndexAction;
+use stesi\core\actions\ListAction;
+use stesi\core\actions\UpdateAction;
+use stesi\core\actions\ViewAction;
+use stesi\core\controllers\StesiController;
+use stesi\billing\models\Invoice;
+use stesi\billing\models\grid\InvoiceGrid;
 
 /**
  * InvoiceController implements the CRUD actions for Invoice model.
  */
-class InvoiceController extends StesiController 
+class InvoiceController extends StesiController
 {
     public function actions()
     {
@@ -35,12 +36,16 @@ class InvoiceController extends StesiController
             'delete' => [
                 'class' => DeleteAction::className(),
                 'modelClass' => Invoice::className(),
+                'redirectAfter'=>'index',
+            ],
+            'add-form-input' => [
+                'class' => AddFormInputAction::className(),
             ],
             'view' => [
                 'class' => ViewAction::className(),
                 'modelClass' => Invoice::className(),
             ],
-            'invoice-list' => [
+            'billing-list' => [
                 'class' => ListAction::className(),
                 'modelClass' => Invoice::className(),
             ]

@@ -3,12 +3,13 @@
 namespace stesi\billing\models;
 
 /**
- * This is the ActiveQuery class for [[Invoice]].
+ * This is the ActiveQuery class for [[InvoiceRow]].
  *
- * @see Invoice
+ * @see InvoiceRow
  */
-class InvoiceQuery extends \yii\db\ActiveQuery
+class InvoiceRowQuery extends \yii\db\ActiveQuery
 {
+
     /**
      * @inheritdoc
      * @return Invoice[]|array
@@ -26,4 +27,5 @@ class InvoiceQuery extends \yii\db\ActiveQuery
     {
         return parent::one($db);
     }
+
 }
