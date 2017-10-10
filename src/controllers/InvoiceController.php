@@ -36,6 +36,7 @@ class InvoiceController extends StesiController
             'delete' => [
                 'class' => DeleteAction::className(),
                 'modelClass' => Invoice::className(),
+                'redirectAfter'=>'index',
             ],
             'add-form-input' => [
                 'class' => AddFormInputAction::className(),
