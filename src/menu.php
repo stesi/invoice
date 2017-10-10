@@ -7,11 +7,11 @@ $menu_billing_invoice=[
     'indexLabelMenu' => 'Billing',
     "items" => [
         [
-            "label" => Yii::t('app/menu/invoice', 'Invoice'),
+            "label" => Yii::t('app/menu/administration', 'Invoice'),
             "url" => ["/billing/invoice"]
         ],
         [
-            "label" => Yii::t('app/menu/payment-terms', 'Payment Terms'),
+            "label" => Yii::t('app/menu/administration', 'Payment Terms'),
             "url" => ["/billing/payment-terms"]
         ],
     ]
