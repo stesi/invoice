@@ -17,7 +17,11 @@ use kartik\builder\Form;
 
 
 ?>
-
+<?php if (isset($this->blocks['block1'])): ?>
+    <?= $this->blocks['block1'] ?>
+<?php else: ?>
+    ... default content for block1 ...
+<?php endif; ?>
 <div class="invoice-form">
     <?= $this->render("@app/views/layouts/flash-error"); ?>
 
