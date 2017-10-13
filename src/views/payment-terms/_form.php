@@ -12,7 +12,7 @@ use yii\widgets\Pjax;
 ?>
 <?php Pjax::begin();?>
 <div class="payment-terms-form">
-    <?= $this->render("@app/views/layouts/flash-error"); ?>
+    <?= $this->render("@stesi/backend/views/layouts/flash-error"); ?>
 
     <?php $form = ActiveForm::begin([
     'options' => ['data-pjax' => true ],

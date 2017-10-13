@@ -19,7 +19,7 @@ use kartik\builder\Form;
 ?>
 
 <div class="invoice-form">
-    <?= $this->render("@app/views/layouts/flash-error"); ?>
+    <?= $this->render("@stesi/backend/views/layouts/flash-error"); ?>
 
     <?php $form = ActiveForm::begin([
         'options' => ['data-pjax' => true],

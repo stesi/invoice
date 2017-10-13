@@ -45,6 +45,6 @@ $this->params['buttons'] = [
         ['class' => 'kartik\grid\ActionColumn'],
     ];
 
-    require(Yii::getAlias('@app/views/layouts/grid_layout.php'));
+    require(Yii::getAlias('@stesi/backend/views/layouts/grid_layout.php'));
     ?>
 </div>
