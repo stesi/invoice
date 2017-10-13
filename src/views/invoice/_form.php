@@ -51,6 +51,7 @@ use kartik\builder\Form;
                                 'allowClear' => true,
                             ],
                             'initValueText' => ArrayHelper::getValue($model, 'organizationTo.name'),
+                            'options' => ['id' => 'invoice_form_organization_to_id'],
                         ],
 
                     ],
@@ -83,7 +84,7 @@ use kartik\builder\Form;
                             'hintType' => ActiveField::HINT_SPECIAL,
                             'hintSettings' => ['container' => '#invoice-form'],
                         ],
-                        'items' => ['INVOICE'=>'INVOICE', 'PREINVOICE'=>'PREINVOICE'],
+                        'items' => ['INVOICE' => 'INVOICE', 'PREINVOICE' => 'PREINVOICE'],
                     ]
                 ]
             ],
@@ -97,7 +98,7 @@ use kartik\builder\Form;
                             'hintSettings' => ['container' => '#invoice-form'],
                         ],
                         'options' => [
-                            'data'=>ArrayHelper::map(PaymentTerms::find()->all(), 'id', 'name'),
+                            'data' => ArrayHelper::map(PaymentTerms::find()->all(), 'id', 'name'),
                             'pluginOptions' => [
                                 'placeholder' => Yii::t('billing/invoice/labels', 'invoice_labels.form.select_payment_terms'),
                                 'allowClear' => true,
@@ -191,26 +192,31 @@ use kartik\builder\Form;
             'enableCache' => false,
         ],
     ]);
-    ?>
 
-    <?= FormGrid::widget([
-        'model' => $model,
-        'form' => $form,
-        'autoGenerateColumns' => true,
-        'rows' => [
-            [
-                'attributes' => [       // 1 column layout
-                    'note' => [
-                        'type' => Form::INPUT_TEXTAREA,
-                        'fieldConfig' => [
-                            'hintType' => ActiveField::HINT_SPECIAL,
-                            'hintSettings' => ['container' => '#invoice-form'],
-                        ]
-                    ],
+    if (isset($this->blocks['invoice_form_with_note1'])) {
+        echo $this->blocks['invoice_form_with_note1'];
+    } else {
+        echo FormGrid::widget([
+            'model' => $model,
+            'form' => $form,
+            'autoGenerateColumns' => true,
+            'rows' => [
+                [
+                    'attributes' => [       // 1 column layout
+                        'note' => [
+                            'type' => Form::INPUT_TEXTAREA,
+                            'format' => 'html',
+                            'fieldConfig' => [
+                                'hintType' => ActiveField::HINT_SPECIAL,
+                                'hintSettings' => ['container' => '#invoice-form'],
+                            ],
+
+                        ],
+                    ]
                 ]
             ]
-        ]
-    ]);
+        ]);
+    }
     ?>
 
 
@@ -228,6 +234,8 @@ use kartik\builder\Form;
 <?php
 
 $script = <<<'JS'
+
+ $("#invoice_form_note_automatic").val('ciao');  	
 
    var form_wrapper=$('.invoice-form');
 
@@ -251,6 +259,29 @@ $script = <<<'JS'
         $('.invoice_row_subtotal',tr).val($sub_total);
     }
     
+    
+    $("#invoice_form_organization_to_id").on("change",function(e) {
+
+        var organization_id = $("#invoice_form_organization_to_id").val();  
+       // var date=new DATE();
+        
+			$.ajax({
+				url : "/notes/invoice/automatic-note",				
+				type : "POST",				
+				data : {
+					organization_id: organization_id,
+					date:'2017-10-13'
+								
+				},				
+				success : function(data) {
+				    var note=data.auto_note;				
+				    $("#invoice-note").val(note);  					
+				},
+				error: function(xhr, textStatus, errorThrown){
+				    alert('bad url')
+                }
+			});		
+    });
        
 JS;
 $this->registerJs($script);
