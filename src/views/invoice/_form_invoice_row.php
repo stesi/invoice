@@ -137,7 +137,7 @@ if (!isset($form)) {
     ]);
     echo "    </div>\n\n";
 
-    require(__DIR__ . '/../../../../../views/layouts/appendClientValidationSubForm.php');
+    require_once(Yii::getAlias('@layoutPath').'/appendClientValidationSubForm.php');
 
 
     ?>

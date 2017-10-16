@@ -15,7 +15,11 @@ use kartik\builder\Form;
 /* @var $model stesi\billing\models\Invoice */
 /* @var $form kartik\form\ActiveForm */
 
-
+if (isset($this->blocks['invoice_form_with_note_js'])) {
+     $this->blocks['invoice_form_with_note_js'];
+} else {
+    \stesi\billing\assets\InvoiceCreateAsset::register($this);
+}
 ?>
 
 <div class="invoice-form">
@@ -193,8 +197,8 @@ use kartik\builder\Form;
         ],
     ]);
 
-    if (isset($this->blocks['invoice_form_with_note1'])) {
-        echo $this->blocks['invoice_form_with_note1'];
+    if (isset($this->blocks['invoice_form_with_note'])) {
+        echo $this->blocks['invoice_form_with_note'];
     } else {
         echo FormGrid::widget([
             'model' => $model,
@@ -233,57 +237,6 @@ use kartik\builder\Form;
 
 <?php
 
-$script = <<<'JS'
 
- $("#invoice_form_note_automatic").val('ciao');  	
-
-   var form_wrapper=$('.invoice-form');
-
-    form_wrapper.on("change",".invoice_row_qty",function(e) {
-        getTotal($(this));     
-    });
-    form_wrapper.on("change",".invoice_row_uprice",function(e) {
-        getTotal($(this));  
-    }); 
-    form_wrapper.on("change",".invoice_row_discount",function(e) {
-        getTotal($(this)); 
-    });  
-    
-    function getTotal(elem){
-        var tr = elem.closest("tr");
-        $tot= 0;
-        $qty= $(".invoice_row_qty",tr).val();
-        $unit_price= $(".invoice_row_uprice",tr).val();
-        $discount= $(".invoice_row_discount",tr).val();
-        $sub_total=($qty*$unit_price)-(($qty*$unit_price)*$discount/100);
-        $('.invoice_row_subtotal',tr).val($sub_total);
-    }
-    
-    
-    $("#invoice_form_organization_to_id").on("change",function(e) {
-
-        var organization_id = $("#invoice_form_organization_to_id").val();  
-       // var date=new DATE();
-        
-			$.ajax({
-				url : "/notes/invoice/automatic-note",				
-				type : "POST",				
-				data : {
-					organization_id: organization_id,
-					date:'2017-10-13'
-								
-				},				
-				success : function(data) {
-				    var note=data.auto_note;				
-				    $("#invoice-note").val(note);  					
-				},
-				error: function(xhr, textStatus, errorThrown){
-				    alert('bad url')
-                }
-			});		
-    });
-       
-JS;
-$this->registerJs($script);
 
 ?>
