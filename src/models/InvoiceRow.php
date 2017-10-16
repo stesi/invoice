@@ -91,7 +91,7 @@ class InvoiceRow extends BaseInvoiceRow
     public function afterSave($insert, $changedAttributes)
     {
         //aggiorno i conteggi sulla fattura padre
-        if($this->invoice->updateCount()){
+        if(!($this->invoice->updateCount())){
             throw new \Exception(Yii::t('billing/invoice/notify', 'After save invoice error'));
         }
 
