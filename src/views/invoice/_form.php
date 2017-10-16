@@ -15,11 +15,12 @@ use kartik\builder\Form;
 /* @var $model stesi\billing\models\Invoice */
 /* @var $form kartik\form\ActiveForm */
 
+/*
 if (isset($this->blocks['invoice_form_with_note_js'])) {
-     $this->blocks['invoice_form_with_note_js'];
-} else {
-    \stesi\billing\assets\InvoiceCreateAsset::register($this);
-}
+    echo $this->blocks['invoice_form_with_note_js'];
+} else {*/
+\stesi\billing\assets\InvoiceCreateAsset::register($this);
+//}
 ?>
 
 <div class="invoice-form">
@@ -234,9 +235,3 @@ if (isset($this->blocks['invoice_form_with_note_js'])) {
     ?>
 
 </div>
-
-<?php
-
-
-
-?>

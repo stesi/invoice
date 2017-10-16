@@ -9,9 +9,6 @@ use yii\web\JqueryAsset;
 class InvoiceCreateAsset extends AssetBundle
 {
     public $sourcePath = __DIR__ . '/dist';
-//    public $basePath = '@webroot';
-//
-//    public $baseUrl = '@web/smartadmin';
 
     public $js = [
 
