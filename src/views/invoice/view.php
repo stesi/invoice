@@ -40,7 +40,7 @@ $this->params['buttons'] = [
         </address>
     </div>
     <div class="pull-right">
-        <h1 class="font-400"><?= $model->invoice_type; ?></h1>
+        <h1 class="font-400"><?= $model->invoice_type_id; //non ho capito perchè non prende il type... ?></h1>
     </div>
     <div class="clearfix"></div>
     <br>

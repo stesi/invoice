@@ -15,7 +15,7 @@ use yii\behaviors\BlameableBehavior;
  * @property integer $organization_from_id
  * @property integer $organization_to_id
  * @property string $status
- * @property string $invoice_type
+ * @property integer $invoice_type_id
  * @property string $preamble
  * @property integer $number
  * @property string $object
@@ -46,8 +46,8 @@ class Invoice extends StesiModel
     public function rules()
     {
         return [
-            [['organization_from_id', 'organization_to_id', 'number', 'created_by', 'updated_by', 'payment_terms_id'], 'integer'],
-            [['status', 'invoice_type', 'note'], 'string'],
+            [['organization_from_id', 'organization_to_id', 'number', 'invoice_type_id', 'created_by', 'updated_by', 'payment_terms_id'], 'integer'],
+            [['status', 'note'], 'string'],
             [['year', 'invoice_date', 'competence_date', 'created_at', 'updated_at'], 'safe'],
             [['taxable', 'discount', 'subtotal', 'tax', 'total'], 'number'],
             [['preamble'], 'string', 'max' => 20],
