@@ -25,7 +25,7 @@ class Module extends \yii\base\Module
         if (Yii::$app instanceof \yii\console\Application) {
             $this->controllerNamespace = 'stesi\billing\commands';
         }
-        Yii::$app->view->on(MenuEvent::EVENT_BEFORE_RENDER, [$this, 'addMenuItems']);
+        else {Yii::$app->view->on(MenuEvent::EVENT_BEFORE_RENDER, [$this, 'addMenuItems']);}
     }
 
     /**
