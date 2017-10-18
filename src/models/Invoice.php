@@ -12,7 +12,6 @@ use yii\base\ErrorException;
  * This is the model class for table "inv_invoice".
  *
  * @property \stesi\billing\models\InvoiceRow[] $invoiceRows
- * @property \stesi\billing\models\InvoiceType $invoiceType
  */
 class Invoice extends BaseInvoice
 {
@@ -90,14 +89,6 @@ class Invoice extends BaseInvoice
     public function getInvoiceRows()
     {
         return $this->hasMany(\stesi\billing\models\InvoiceRow::className(), ['invoice_id' => 'id']);
-    }
-
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getInvoiceType()
-    {
-        return $this->hasMany(\stesi\billing\models\InvoiceType::className(), ['id' => 'invoice_type_id']);
     }
 
     public function beforeSave($insert)

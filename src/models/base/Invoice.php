@@ -37,6 +37,7 @@ use yii\behaviors\BlameableBehavior;
  * @property \stesi\billing\models\Organization $organizationFrom
  * @property \stesi\billing\models\Organization $organizationTo
  * @property \stesi\billing\models\PaymentTerms $paymentTerms
+ * @property \stesi\billing\models\InvoiceType $invoiceType
  */
 class Invoice extends StesiModel
 {
@@ -48,6 +49,7 @@ class Invoice extends StesiModel
         return [
             [['organization_from_id', 'organization_to_id', 'number', 'invoice_type_id', 'created_by', 'updated_by', 'payment_terms_id'], 'integer'],
             [['status', 'note'], 'string'],
+            [['invoice_type_id'], 'required'],
             [['year', 'invoice_date', 'competence_date', 'created_at', 'updated_at'], 'safe'],
             [['taxable', 'discount', 'subtotal', 'tax', 'total'], 'number'],
             [['preamble'], 'string', 'max' => 20],
@@ -56,7 +58,8 @@ class Invoice extends StesiModel
             [['object'], 'default'],
             [['organization_from_id'], 'exist', 'skipOnError' => true, 'targetClass' => Organization::className(), 'targetAttribute' => ['organization_from_id' => 'id']],
             [['organization_to_id'], 'exist', 'skipOnError' => true, 'targetClass' => Organization::className(), 'targetAttribute' => ['organization_to_id' => 'id']],
-            [['payment_terms_id'], 'exist', 'skipOnError' => true, 'targetClass' => PaymentTerms::className(), 'targetAttribute' => ['payment_terms_id' => 'id']]
+            [['payment_terms_id'], 'exist', 'skipOnError' => true, 'targetClass' => PaymentTerms::className(), 'targetAttribute' => ['payment_terms_id' => 'id']],
+            [['invoice_type_id'], 'exist', 'skipOnError' => true, 'targetClass' => InvoiceType::className(), 'targetAttribute' => ['invoice_type_id' => 'id']]
         ];
     }
     
@@ -91,8 +94,17 @@ class Invoice extends StesiModel
     {
         return $this->hasOne(\stesi\billing\models\PaymentTerms::className(), ['id' => 'payment_terms_id']);
     }
-    
-/**
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getInvoiceType()
+    {
+        return $this->hasOne(\stesi\billing\models\InvoiceType::className(), ['id' => 'invoice_type_id']);
+    }
+
+
+    /**
      * @inheritdoc
      * @return array mixed
      */ 

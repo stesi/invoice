@@ -25,7 +25,10 @@ class InvoiceType extends StesiModel
     {
         return [
 
-            [['code', 'invoice_type'], 'string'],
+            [['code'], 'required'],
+            [['type'], 'string'],
+            [['code'], 'string', 'max' => 32],
+            [['code'], 'default']
         ];
     }
     
