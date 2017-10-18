@@ -2,6 +2,7 @@
 
 namespace stesi\billing\controllers;
 
+use app\services\StesiTools;
 use stesi\core\actions\AddFormInputAction;
 use stesi\core\actions\CreateAction;
 use stesi\core\actions\DeleteAction;
@@ -12,22 +13,23 @@ use stesi\core\actions\ViewAction;
 use stesi\core\controllers\StesiController;
 use stesi\billing\models\Invoice;
 use stesi\billing\models\grid\InvoiceGrid;
+use Yii;
 
 /**
  * InvoiceController implements the CRUD actions for Invoice model.
  */
 class InvoiceController extends StesiController
 {
+
     public function actions()
     {
         return [
-            'index' => [
-                'class' => IndexAction::className(),
-                'modelClass' => InvoiceGrid::className(),
-            ],
             'create' => [
                 'class' => CreateAction::className(),
-                'modelClass' => Invoice::className()
+                'modelClass' => Invoice::className(),
+                'additionalParams' => [
+                    'invoice_type_id'=>StesiTools::getValueFromSession("invoice_type_id", 1)
+                ]
             ],
             'update' => [
                 'class' => UpdateAction::className(),
@@ -50,5 +52,20 @@ class InvoiceController extends StesiController
                 'modelClass' => Invoice::className(),
             ]
         ];
+    }
+
+
+    public function actionIndex()
+    {
+
+        $searchModel = new InvoiceGrid();
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        $params = Yii::$app->request->queryParams;
+        $invoiceTypeId = StesiTools::getValueFromSession("invoice_type_id", 1);
+
+        return $this->render('index', [
+            'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider,
+        ]);
     }
 }

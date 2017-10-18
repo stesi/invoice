@@ -11,7 +11,7 @@ $this->title = $model->id;
 $this->params['breadcrumbs'][] = ['label' => Yii::t('app/breadcrumbs', 'invoice_view_breadcrumbs.Index'), 'url' => ["index"]];
 $this->params['breadcrumbs'][] = ['label' => Yii::t('app/breadcrumbs', 'view_breadcrumbs.Id') . $model->id, 'url' => ["view", "id" => $model->id]];
 $this->params['buttons'] = [
-    ['label' => Yii::t('billing/invoice/buttons', 'invoice_buttons.view.update_invoice'), 'url' => ['update', "id" => $model->id], 'linkOptions' => ["class" => "showModalButton btn btn-sm btn-primary", "title" => Yii::t('billing/invoice/titles', 'invoice_titles.update_invoice')]],
+    ['label' => Yii::t('billing/invoice/buttons', 'invoice_buttons.view.update_invoice'), 'url' => ['update', "id" => $model->id ], 'linkOptions' => ["class" => "showModalButton btn btn-sm btn-primary", "title" => Yii::t('billing/invoice/titles', 'invoice_titles.update_invoice')]],
     ['label' => Yii::t('billing/invoice/buttons', 'invoice_buttons.view.delete_invoice'), 'url' => ['delete', "id" => $model->id], 'linkOptions' => ["class" => "btn btn-sm btn btn-danger", "title" => Yii::t('billing/invoice/titles', 'invoice_titles.delete_invoice'),
         'data' => [
             'confirm' => Yii::t('app', 'Are you sure you want to delete this item?'),

@@ -14,6 +14,7 @@ use kartik\builder\Form;
 /* @var $this yii\web\View */
 /* @var $model stesi\billing\models\Invoice */
 /* @var $form kartik\form\ActiveForm */
+/* @var $invoice_type_id integer */
 
 /*
 if (isset($this->blocks['invoice_form_with_note_js'])) {
@@ -83,18 +84,6 @@ if (isset($this->blocks['invoice_form_with_note_js'])) {
             ],
             [
                 'attributes' => [
-                    'invoice_type' => [
-                        'type' => Form::INPUT_DROPDOWN_LIST,
-                        'fieldConfig' => [
-                            'hintType' => ActiveField::HINT_SPECIAL,
-                            'hintSettings' => ['container' => '#invoice-form'],
-                        ],
-                        'items' => ['INVOICE' => 'INVOICE', 'PREINVOICE' => 'PREINVOICE'],
-                    ]
-                ]
-            ],
-            [
-                'attributes' => [
                     'payment_terms_id' => [
                         'type' => Form::INPUT_WIDGET,
                         'widgetClass' => Select2::class,
@@ -132,6 +121,9 @@ if (isset($this->blocks['invoice_form_with_note_js'])) {
         'type' => DateControl::FORMAT_DATETIME,
         'options' => ['placeholder' => 'Enter date ...']
     ]);
+
+    echo $form->field($model, 'invoice_type_id')->hiddenInput(['value'=>$invoice_type_id])->label(false)->hint(false);
+
 
 
     ?>
