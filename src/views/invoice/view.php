@@ -1,6 +1,6 @@
 <?php
 
-use app\services\AdministrationTools;
+use stesi\core\services\AdministrationTools;
 use kartik\helpers\Html;
 
 /* @var $this yii\web\View */
