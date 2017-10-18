@@ -98,19 +98,27 @@ $this->params['buttons'] = [
             <br>
             <br>
         </div>
+        <div class="row">
         <div class="col-sm-12">
-            <p>
+            <div class="col-sm-1">
                 <span class="label bg-color-darken txt-color-white">Object</span>
-
+            </div>
+            <div class="col-sm-11">
                 <?= (isset($model->object)) ? $model->object : ""; ?>
-            </p>
+            </div>
         </div>
         <div class="col-sm-12">
-            <p>
+            <br>
+            <br>
+            <div class="col-sm-1">
                 <span class="label bg-color-darken txt-color-white">Notes</span>
-
+            </div>
+            <div class="col-sm-11">
                 <?= (isset($model->note)) ? $model->note : ""; ?>
-            </p>
+            </div>
+            <br>
+            <br>
+        </div>
         </div>
     </div>
 

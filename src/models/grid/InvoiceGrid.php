@@ -57,6 +57,11 @@ class InvoiceGrid extends yii\db\ActiveRecord
             return $dataProvider;
         }
 
+        //Distinguo se dal menu arrivo da transports (level=1) o da trips (level=2)
+        if(array_key_exists('invoice_type_id', $params)) {
+            $this->invoice_type_id=$params['invoice_type_id'];
+        }
+
         // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
@@ -71,7 +76,7 @@ class InvoiceGrid extends yii\db\ActiveRecord
             'created_by' => $this->created_by,
             'updated_by' => $this->updated_by,
             'payment_terms_id' => $this->payment_terms_id,
-            'invoice_type_id' => $this->invoice_type_id,
+            'invoice_type_id' => $this->invoice_type_id, //filtro necessario per disctinguere la tipologia di documento
             'subtotal' => $this->subtotal,
             'tax' => $this->tax,
             'total' => $this->total,
