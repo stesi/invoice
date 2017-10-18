@@ -1,11 +1,15 @@
 <?php
+/* @var $invoiceTypeId integer */
 
 $this->title = 'Invoices';
 $this->params['breadcrumbs'][] = ['label' => Yii::t('app/breadcrumbs', 'invoice_index_breadcrumbs.Index'), 'url' => ['index']];
 
-$this->params['buttons'] = [
-    ['label' => Yii::t('billing/invoice/buttons', 'invoice_buttons.index.create_invoice'), 'url' => ['create'], 'linkOptions' => ["class" => "showModalButton btn btn-sm btn-default", "title" => Yii::t('billing/invoice/titles', 'invoice_titles.create_invoice')],],
-];
+
+if($invoiceTypeId!=='100') {
+    $this->params['buttons'] = [
+        ['label' => Yii::t('billing/invoice/buttons', 'invoice_buttons.index.create_invoice'), 'url' => ['create'], 'linkOptions' => ["class" => "showModalButton btn btn-sm btn-default", "title" => Yii::t('billing/invoice/titles', 'invoice_titles.create_invoice')],],
+    ];
+}
 
 ?>
 <div class="invoice-index">

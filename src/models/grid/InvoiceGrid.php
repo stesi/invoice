@@ -58,7 +58,7 @@ class InvoiceGrid extends yii\db\ActiveRecord
         }
 
         //Distinguo se dal menu arrivo da transports (level=1) o da trips (level=2)
-        if(array_key_exists('invoice_type_id', $params)) {
+        if(array_key_exists('invoice_type_id', $params) && $params['invoice_type_id']!=100) {
             $this->invoice_type_id=$params['invoice_type_id'];
         }
 

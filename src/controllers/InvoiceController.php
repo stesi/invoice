@@ -28,7 +28,7 @@ class InvoiceController extends StesiController
                 'class' => CreateAction::className(),
                 'modelClass' => Invoice::className(),
                 'additionalParams' => [
-                    'invoice_type_id'=>StesiTools::getValueFromSession("invoice_type_id", 1)
+                    'invoice_type_id'=>StesiTools::getValueFromSession("invoice_type_id")
                 ]
             ],
             'update' => [
@@ -61,11 +61,12 @@ class InvoiceController extends StesiController
         $searchModel = new InvoiceGrid();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
         $params = Yii::$app->request->queryParams;
-        $invoiceTypeId = StesiTools::getValueFromSession("invoice_type_id", 1);
+        $invoiceTypeId = StesiTools::getValueFromSession("invoice_type_id");
 
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
+            'invoiceTypeId'=>$invoiceTypeId
         ]);
     }
 }

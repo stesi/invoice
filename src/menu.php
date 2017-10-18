@@ -7,7 +7,7 @@ $menu_billing_invoice = [
     'indexLabelMenu' => 'Billing',
     "items" => [
         [
-            'label' => '<i class="fa fa-fw fa-asterisk"></i> ' . Yii::t('app/menu/administration', 'Sales'),
+            'label' => Yii::t('app/menu/administration', 'Sales'),
             'url' => ["/billing/sales"],
             'items' => [
                 [
@@ -25,7 +25,7 @@ $menu_billing_invoice = [
             ],
         ],
         [
-            'label' => '<i class="fa fa-fw fa-asterisk"></i> ' . Yii::t('app/menu/administration', 'Purchase'),
+            'label' => Yii::t('app/menu/administration', 'Purchase'),
             'url' => ["/billing/purchase"],
             'items' => [
                 [
@@ -37,6 +37,10 @@ $menu_billing_invoice = [
                     "url" => ["/billing/invoice?invoice_type_id=4"]
                 ],
             ],
+        ],
+        [
+            "label" => Yii::t('app/menu/administration', 'All Documents'),
+            "url" => ["/billing/invoice?invoice_type_id=100"]
         ],
         ["label" => Yii::t('app/menu/administration', 'Payment Terms'),
         "url" => ["/billing/payment-terms"]
