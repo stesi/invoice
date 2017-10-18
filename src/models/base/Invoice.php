@@ -26,7 +26,7 @@ use yii\behaviors\BlameableBehavior;
  * @property string $updated_at
  * @property integer $created_by
  * @property integer $updated_by
- * @property integer $payment_terms_id
+ * @property string $payment_terms
  * @property string $note
  * @property double $taxable
  * @property double $discount
@@ -47,7 +47,7 @@ class Invoice extends StesiModel
     public function rules()
     {
         return [
-            [['organization_from_id', 'organization_to_id', 'number', 'invoice_type_id', 'created_by', 'updated_by', 'payment_terms_id'], 'integer'],
+            [['organization_from_id', 'organization_to_id', 'number', 'invoice_type_id', 'created_by', 'updated_by'], 'integer'],
             [['status', 'note'], 'string'],
             [['invoice_type_id'], 'required'],
             [['year', 'invoice_date', 'competence_date', 'created_at', 'updated_at'], 'safe'],
@@ -56,10 +56,11 @@ class Invoice extends StesiModel
             [['preamble'], 'default'],
             [['object'], 'string', 'max' => 120],
             [['object'], 'default'],
+            [['payment_terms'], 'string', 'max' => 32],
+            [['payment_terms'], 'default'],
             [['organization_from_id'], 'exist', 'skipOnError' => true, 'targetClass' => Organization::className(), 'targetAttribute' => ['organization_from_id' => 'id']],
             [['organization_to_id'], 'exist', 'skipOnError' => true, 'targetClass' => Organization::className(), 'targetAttribute' => ['organization_to_id' => 'id']],
-            [['payment_terms_id'], 'exist', 'skipOnError' => true, 'targetClass' => PaymentTerms::className(), 'targetAttribute' => ['payment_terms_id' => 'id']],
-            [['invoice_type_id'], 'exist', 'skipOnError' => true, 'targetClass' => InvoiceType::className(), 'targetAttribute' => ['invoice_type_id' => 'id']]
+           [['invoice_type_id'], 'exist', 'skipOnError' => true, 'targetClass' => InvoiceType::className(), 'targetAttribute' => ['invoice_type_id' => 'id']]
         ];
     }
     
@@ -87,13 +88,6 @@ class Invoice extends StesiModel
         return $this->hasOne(\stesi\billing\models\Organization::className(), ['id' => 'organization_to_id']);
     }
         
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getPaymentTerms()
-    {
-        return $this->hasOne(\stesi\billing\models\PaymentTerms::className(), ['id' => 'payment_terms_id']);
-    }
 
     /**
      * @return \yii\db\ActiveQuery

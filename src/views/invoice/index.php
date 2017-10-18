@@ -31,8 +31,8 @@ if($invoiceTypeId!=='100') {
         'status',
         'invoice_type',
         [
-            'attribute' => 'payment_terms_name',
-            'label' => Yii::t('billing/invoice/labels', 'invoice_index.payment_terms_name')
+            'attribute' => 'payment_terms',
+            'label' => Yii::t('billing/invoice/labels', 'invoice_index.payment_terms')
         ],
         'preamble',
         'number',

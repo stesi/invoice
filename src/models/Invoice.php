@@ -12,6 +12,7 @@ use yii\base\ErrorException;
  * This is the model class for table "inv_invoice".
  *
  * @property \stesi\billing\models\InvoiceRow[] $invoiceRows
+ * @property \stesi\billing\models\InvoiceOrganizationInfo[] $invoiceOrganizationInfos
  */
 class Invoice extends BaseInvoice
 {
@@ -46,7 +47,7 @@ class Invoice extends BaseInvoice
             'year' => Yii::t('billing/invoice/labels', 'invoice_labels.year'),
             'invoice_date' => Yii::t('billing/invoice/labels', 'invoice_labels.invoice_date'),
             'competence_date' => Yii::t('billing/invoice/labels', 'invoice_labels.competence_date'),
-            'payment_terms_id' => Yii::t('billing/invoice/labels', 'invoice_labels.payment_terms_id'),
+            'payment_terms' => Yii::t('billing/invoice/labels', 'invoice_labels.payment_terms'),
             'note' => Yii::t('billing/invoice/labels', 'invoice_labels.note'),
             'taxable' => Yii::t('billing/invoice/labels', 'invoice_labels.taxable'),
             'discount' => Yii::t('billing/invoice/labels', 'invoice_labels.discount'),
@@ -73,7 +74,7 @@ class Invoice extends BaseInvoice
             'year' => Yii::t('billing/invoice/hints', 'invoice_hints.year'),
             'invoice_date' => Yii::t('billing/invoice/hints', 'invoice_hints.invoice_date'),
             'competence_date' => Yii::t('billing/invoice/hints', 'invoice_hints.competence_date'),
-            'payment_terms_id' => Yii::t('billing/invoice/hints', 'invoice_hints.payment_terms_id'),
+            'payment_terms' => Yii::t('billing/invoice/hints', 'invoice_hints.payment_terms'),
             'note' => Yii::t('billing/invoice/hints', 'invoice_hints.note'),
             'taxable' => Yii::t('billing/invoice/hints', 'invoice_hints.taxable'),
             'discount' => Yii::t('billing/invoice/hints', 'invoice_hints.discount'),
@@ -89,6 +90,14 @@ class Invoice extends BaseInvoice
     public function getInvoiceRows()
     {
         return $this->hasMany(\stesi\billing\models\InvoiceRow::className(), ['invoice_id' => 'id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getInvoiceOrganizationInfos()
+    {
+        return $this->hasMany(\stesi\billing\models\InvoiceOrganizationInfo::className(), ['invoice_id' => 'id']);
     }
 
     public function beforeSave($insert)

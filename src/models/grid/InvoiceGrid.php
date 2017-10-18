@@ -19,9 +19,9 @@ class InvoiceGrid extends yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['id', 'organization_from_id', 'organization_to_id', 'invoice_type_id', 'number', 'created_by', 'updated_by', 'payment_terms_id'], 'integer'],
+            [['id', 'organization_from_id', 'organization_to_id', 'invoice_type_id', 'number', 'created_by', 'updated_by'], 'integer'],
             [['status', 'preamble', 'year', 'invoice_date', 'competence_date', 'created_at', 'updated_at', 'note','organization_from_code',
-                'organization_from_name','organization_to_code','organization_to_name','payment_terms_name'], 'safe'],
+                'organization_from_name','organization_to_code','organization_to_name', 'payment_terms'], 'safe'],
             [['subtotal', 'tax', 'total'], 'number'],
             [['globalSearch'], 'safe'],
         ];
@@ -75,7 +75,7 @@ class InvoiceGrid extends yii\db\ActiveRecord
             'updated_at' => $this->updated_at,
             'created_by' => $this->created_by,
             'updated_by' => $this->updated_by,
-            'payment_terms_id' => $this->payment_terms_id,
+            'payment_terms' => $this->payment_terms,
             'invoice_type_id' => $this->invoice_type_id, //filtro necessario per disctinguere la tipologia di documento
             'subtotal' => $this->subtotal,
             'tax' => $this->tax,
@@ -89,7 +89,7 @@ class InvoiceGrid extends yii\db\ActiveRecord
             ->andFilterWhere(['like', 'organization_from_name', $this->organization_from_name])
             ->andFilterWhere(['like', 'organization_to_code', $this->organization_to_code])
             ->andFilterWhere(['like', 'organization_to_name', $this->organization_to_name])
-            ->andFilterWhere(['like', 'payment_terms_name', $this->payment_terms_name]);
+            ->andFilterWhere(['like', 'payment_terms', $this->payment_terms]);
 
         //GlobalSearch
         $globalSearchField = array("or");

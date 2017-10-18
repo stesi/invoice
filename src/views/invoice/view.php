@@ -83,7 +83,7 @@ $this->params['buttons'] = [
             <div>
                 <div>
                     <strong>PAYMENT TERM :</strong>
-                    <span class="pull-right"><?= (isset($model->paymentTerms->name)) ? $model->paymentTerms->name : ""; ?> </span>
+                    <span class="pull-right"><?= (isset($model->payment_terms)) ? $model->payment_terms : ""; ?> </span>
                 </div>
 
             </div>

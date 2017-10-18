@@ -84,7 +84,7 @@ if (isset($this->blocks['invoice_form_with_note_js'])) {
             ],
             [
                 'attributes' => [
-                    'payment_terms_id' => [
+                    'payment_terms' => [
                         'type' => Form::INPUT_WIDGET,
                         'widgetClass' => Select2::class,
                         'fieldConfig' => [
@@ -92,12 +92,12 @@ if (isset($this->blocks['invoice_form_with_note_js'])) {
                             'hintSettings' => ['container' => '#invoice-form'],
                         ],
                         'options' => [
-                            'data' => ArrayHelper::map(PaymentTerms::find()->all(), 'id', 'name'),
+                            'data' => ArrayHelper::map(PaymentTerms::find()->all(), 'name', 'name'),
                             'pluginOptions' => [
                                 'placeholder' => Yii::t('billing/invoice/labels', 'invoice_labels.form.select_payment_terms'),
                                 'allowClear' => true,
                             ],
-                            'initValueText' => ArrayHelper::getValue($model, 'paymentTerms.name'),
+                            'initValueText' => ArrayHelper::getValue($model, 'payment_terms'),
                         ],
 
                     ],
