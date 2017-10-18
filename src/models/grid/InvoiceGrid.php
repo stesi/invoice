@@ -19,8 +19,8 @@ class InvoiceGrid extends yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['id', 'organization_from_id', 'organization_to_id', 'number', 'created_by', 'updated_by', 'payment_terms_id'], 'integer'],
-            [['status', 'invoice_type', 'preamble', 'year', 'invoice_date', 'competence_date', 'created_at', 'updated_at', 'note','organization_from_code',
+            [['id', 'organization_from_id', 'organization_to_id', 'invoice_type_id', 'number', 'created_by', 'updated_by', 'payment_terms_id'], 'integer'],
+            [['status', 'preamble', 'year', 'invoice_date', 'competence_date', 'created_at', 'updated_at', 'note','organization_from_code',
                 'organization_from_name','organization_to_code','organization_to_name','payment_terms_name'], 'safe'],
             [['subtotal', 'tax', 'total'], 'number'],
             [['globalSearch'], 'safe'],
@@ -57,6 +57,11 @@ class InvoiceGrid extends yii\db\ActiveRecord
             return $dataProvider;
         }
 
+        //Distinguo se dal menu arrivo da transports (level=1) o da trips (level=2)
+        if(array_key_exists('invoice_type_id', $params) && $params['invoice_type_id']!=100) {
+            $this->invoice_type_id=$params['invoice_type_id'];
+        }
+
         // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
@@ -71,13 +76,13 @@ class InvoiceGrid extends yii\db\ActiveRecord
             'created_by' => $this->created_by,
             'updated_by' => $this->updated_by,
             'payment_terms_id' => $this->payment_terms_id,
+            'invoice_type_id' => $this->invoice_type_id, //filtro necessario per disctinguere la tipologia di documento
             'subtotal' => $this->subtotal,
             'tax' => $this->tax,
             'total' => $this->total,
         ]);
 
         $query->andFilterWhere(['like', 'status', $this->status])
-            ->andFilterWhere(['like', 'invoice_type', $this->invoice_type])
             ->andFilterWhere(['like', 'preamble', $this->preamble])
             ->andFilterWhere(['like', 'note', $this->note])
             ->andFilterWhere(['like', 'organization_from_code', $this->organization_from_code])

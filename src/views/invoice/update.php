@@ -17,6 +17,7 @@ $this->params['breadcrumbs'][] = Yii::t('app/breadcrumbs', 'update_breadcrumbs.U
 
     <?= $this->render('_form', [
         'model' => $model,
+        'invoice_type_id'=>$model->invoice_type_id
     ]) ?>
 
 </div>
