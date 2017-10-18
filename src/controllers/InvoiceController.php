@@ -2,7 +2,7 @@
 
 namespace stesi\billing\controllers;
 
-use app\services\StesiTools;
+use stesi\core\services\StesiTools;
 use stesi\core\actions\AddFormInputAction;
 use stesi\core\actions\CreateAction;
 use stesi\core\actions\DeleteAction;

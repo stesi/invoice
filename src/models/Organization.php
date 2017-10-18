@@ -2,8 +2,8 @@
 
 namespace stesi\billing\models;
 
-use \app\modules\gles\models\Organization as GlesOrganization;
-use app\services\StesiTools;
+use \stesi\gles\models\Organization as GlesOrganization;
+use stesi\core\services\StesiTools;
 use kartik\helpers\Html;
 
 use nhkey\arh\ActiveRecordHistoryBehavior;
